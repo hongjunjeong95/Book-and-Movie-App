@@ -1,0 +1,25 @@
+{
+  "python.pythonPath": "C:\\Users\\Hong Jun\\.virtualenvs\\assignment1-XdG8wvjR\\Scripts\\python.exe",
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "python.linting.flake8Args": ["--max-line-length=91"],
+  // django setup
+  "files.associations": {
+    "**/*.html": "html",
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt",
+    "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+  },
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "unibeautify.enabled": true,
+  "[django-html]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "Glavin001.unibeautify-vscode"
+  },
+  "[python]": {
+		"editor.defaultFormatter": "ms-python.python",
+  },
+  "python.formatting.provider": "black"
+}
