@@ -21,6 +21,12 @@ class FavListAdmin(admin.ModelAdmin):
         "movies",
     )
 
-    list_display = ("created_by",)
+    list_display = ("created_by", "count_books", "count_movies")
 
     list_filter = ("created_by",)
+
+    def count_books(self, obj):
+        return obj.books.count()
+
+    def count_movies(self, obj):
+        return obj.movies.count()
