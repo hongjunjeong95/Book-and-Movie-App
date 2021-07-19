@@ -17,7 +17,7 @@ class Category(core_models.TimeStampedModel):
     )
 
     name = models.CharField(max_length=100)
-    kind = models.CharField(max_length=100, choices=KIND_CHOICES, default=KIND_BOOK)
+    kind = models.CharField(max_length=100, choices=KIND_CHOICES)
 
     def __str__(self):
         return self.name
