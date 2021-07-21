@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.views.generic import ListView
 
 from books.models import Book
@@ -21,3 +22,7 @@ class HomeView(ListView):
         context = super().get_context_data()
         context["page_sector"] = page_sector
         return context
+
+
+def searchView(request):
+    return render(request, "pages/root/search.html")
