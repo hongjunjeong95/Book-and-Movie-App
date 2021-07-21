@@ -14,11 +14,6 @@ NAME = "favourite lists"
 class Command(BaseCommand):
     help = f"This command creates many {NAME}"
 
-    # def add_arguments(self, parser: CommandParser) -> None:
-    #     parser.add_argument(
-    #         "--total", type=int, help=f"How many {NAME} do you want to create"
-    #     )
-
     def handle(self, *args: Any, **options: Any) -> Optional[str]:
         users = User.objects.all()
 

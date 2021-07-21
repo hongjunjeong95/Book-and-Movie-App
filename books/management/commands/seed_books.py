@@ -20,8 +20,10 @@ class Command(BaseCommand):
 
     def handle(self, *args: Any, **options: Any) -> Optional[str]:
         total = options.get("total", 1)
-        categories = Category.objects.all().filter(Q(kind="both") | Q(kind="book"))
-        writers = Person.objects.all().filter(kind="writer")
+        categories = Category.objects.all().filter(
+            Q(kind=Category.KIND_BOTH) | Q(kind=Category.KIND_BOOK)
+        )
+        writers = Person.objects.all().filter(kind=Person.KIND_WRITER)
         seeder = Seed.seeder()
         seeder.add_entity(
             Book,

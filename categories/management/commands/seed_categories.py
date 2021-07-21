@@ -1,4 +1,3 @@
-import random
 from django.core.management.base import BaseCommand
 from categories.models import Category
 
@@ -8,41 +7,61 @@ NAME = "categories"
 class Command(BaseCommand):
     help = f"This command creates many {NAME}"
 
+    both_genres = [
+        "Adventure",
+        "Fantasy",
+        "History",
+        "Horror",
+        "Mystery",
+        "Romance",
+        "Thriller",
+    ]
+
+    movie_genres = [
+        "Action",
+        "Animation",
+        "Biography",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Family",
+        "Film Noir",
+        "Music",
+        "Musical",
+        "Sci-Fi",
+        "Short Film",
+        "Sport",
+        "Superhero",
+        "War",
+        "Western",
+    ]
+    book_genres = [
+        "Contemporary",
+        "Dystopian",
+        "Paranormal",
+        "Historical fiction",
+        "Science Fiction",
+        "Memoir",
+        "Cooking",
+        "Art",
+        "Self-help / Personal",
+        "Development",
+        "Motivational",
+        "Health",
+        "Travel",
+        "Guide / How-to",
+        "Families & Relationships",
+        "Humor",
+        "Children’s",
+    ]
+
     def handle(self, *args, **options):
-        categories = [
-            "Action",
-            "Comedy",
-            "Drama",
-            "Western",
-            "Fantasy",
-            "Adventure",
-            "Romance",
-            "Contemporary",
-            "Dystopian",
-            "Mystery",
-            "Horror",
-            "Thriller",
-            "Paranormal",
-            "Historical fiction",
-            "Science Fiction",
-            "Memoir",
-            "Cooking",
-            "Art",
-            "Self-help / Personal",
-            "Development",
-            "Motivational",
-            "Health",
-            "History",
-            "Travel",
-            "Guide / How-to",
-            "Families & Relationships",
-            "Humor",
-            "Children’s",
-        ]
-
-        kind = [Category.KIND_BOOK, Category.KIND_MOVIE, Category.KIND_BOTH]
-
-        for category in categories:
-            Category.objects.create(name=category, kind=random.choice(kind))
+        for genre in self.both_genres:
+            Category.objects.get_or_create(name=genre, kind=Category.KIND_BOTH)
+        for genre in self.movie_genres:
+            Category.objects.get_or_create(name=genre, kind=Category.KIND_MOVIE)
+        for genre in self.book_genres:
+            Category.objects.get_or_create(name=genre, kind=Category.KIND_BOOK)
 
         self.stdout.write(self.style.SUCCESS(f"Create {NAME}"))

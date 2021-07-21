@@ -32,6 +32,7 @@ class Command(BaseCommand):
             Review,
             total,
             {
+                "text": lambda x: seeder.faker.sentence(),
                 "rating": lambda x: random.randint(0, 5),
                 "created_by": lambda x: random.choice(users),
                 "movie": lambda x: random.choice(movies),
