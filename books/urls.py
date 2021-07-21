@@ -1,9 +1,8 @@
 from django.urls import path
-from rooms import views as room_views
+from books import views as book_views
 
-app_name = "core"
+app_name = "books"
 
 urlpatterns = [
-    path("", room_views.HomeView.as_view(), name="home"),
-    path("search/", room_views.searchView, name="search"),
+    path("", book_views.BookListView.as_view(), name="books"),
 ]

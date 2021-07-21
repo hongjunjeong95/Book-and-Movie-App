@@ -6,8 +6,8 @@ from django.conf import settings
 
 urlpatterns = [
     path("", include("core.urls", namespace="core")),
+    path("books/", include("books.urls", namespace="books")),
     # path("movies/", include("movies.urls", namespace="movies")),
-    # path("books/", include("books.urls", namespace="books")),
     # path("genres/", include("genres.urls", namespace="genres")),
     # path("people/", include("people.urls", namespace="people")),
     path("admin/", admin.site.urls),
