@@ -19,7 +19,7 @@
     "editor.defaultFormatter": "Glavin001.unibeautify-vscode"
   },
   "[python]": {
-		"editor.defaultFormatter": "ms-python.python",
+    "editor.defaultFormatter": "ms-python.python"
   },
   "python.formatting.provider": "black"
 }

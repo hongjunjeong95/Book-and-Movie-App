@@ -1,0 +1,19 @@
+<section class="section">
+  <h4>Latest
+    {{section_name}}</h4>
+  {% for obj in page_obj %}
+    <div class="poster">
+      <div class="cover_img">
+        <div class="title">
+          {{obj.title}}
+        </div>
+        <div>
+          {{obj.rating}}
+        </div>
+        <div>
+          {{obj.year}}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</section>

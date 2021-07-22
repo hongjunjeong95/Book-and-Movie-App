@@ -40,6 +40,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# 이것을 확인하고 config.urls에 있는 urlpatterns를 확인한다.
 ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
