@@ -6,8 +6,8 @@
   <div class="flex flex-col items-center justify-items-center">
     <div class="w-10/12">
       {% comment %}  {% endcomment %}
-      {% include 'mixins/book_and_movie_section.html' with section_name="Books" page_obj=book_page_obj %}
-      {% include 'mixins/book_and_movie_section.html' with section_name="Movies" page_obj=movie_page_obj %}
+      {% include 'mixins/book_and_movie_section.html' with section_name="books" page_obj=book_page_obj %}
+      {% include 'mixins/book_and_movie_section.html' with section_name="movies" page_obj=movie_page_obj %}
 
       <section class="people_section">
         <h4>Latest People</h4>
@@ -23,6 +23,7 @@
             </div>
           </div>
         {% endfor %}
+        {% include 'mixins/page_number.html' with section_name="people" page_obj=person_page_obj %}
       </section>
     </div>
   </div>

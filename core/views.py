@@ -36,11 +36,14 @@ def homeView(request):
     movie_paginator = Paginator(movies, 8)
     person_paginator = Paginator(people, 8)
 
-    page_number = request.GET.get("page", 1)
+    book_page_number = request.GET.get("books_page", 1)
+    movie_page_number = request.GET.get("movies_page", 1)
+    people_page_number = request.GET.get("people_page", 1)
+    print(people_page_number)
 
-    book_page_obj = book_paginator.get_page(page_number)
-    movie_page_obj = movie_paginator.get_page(page_number)
-    person_page_obj = person_paginator.get_page(page_number)
+    book_page_obj = book_paginator.get_page(book_page_number)
+    movie_page_obj = movie_paginator.get_page(movie_page_number)
+    person_page_obj = person_paginator.get_page(people_page_number)
 
     return render(
         request,
