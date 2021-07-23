@@ -1,9 +1,29 @@
 {% extends 'base.html' %}
 
 {% block page_title %}
-  Person List
+  People List
 {% endblock page_title %}
 
+{% comment %}  {% endcomment %}
+
 {% block content %}
-  Person list
+  <section class="section">
+    <h4>Latest People</h4>
+    {% for obj in page_obj %}
+      <div class="poster">
+        <div class="cover_img">
+          <div class="title">
+            {{obj.name}}
+          </div>
+          <div>
+            {{obj.kind}}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="flex justify-center mt-20 itmes-center">
+      {% include 'mixins/page_number.html' with page=page_obj %}
+    </div>
+  </section>
+
 {% endblock content%}
