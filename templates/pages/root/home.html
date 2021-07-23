@@ -7,13 +7,13 @@
     <div class="w-10/12">
       {% comment %}  {% endcomment %}
       <section>
-        {% include 'mixins/book_and_movie_section.html' with section_name="books" page_obj=book_page_obj %}
+        {% include 'mixins/book_and_movie_section.html' with section_name="books" page_obj=books %}
         <a href="{% url 'books:book-list' %}">
           Go to Book List
         </a>
       </section>
       <section>
-        {% include 'mixins/book_and_movie_section.html' with section_name="movies" page_obj=movie_page_obj %}
+        {% include 'mixins/book_and_movie_section.html' with section_name="movies" page_obj=movies %}
         <a href="{% url 'movies:movie-list' %}">
           Go to Movie List
         </a>
@@ -21,7 +21,7 @@
 
       <section class="people_section">
         <h4>Latest People</h4>
-        {% for person in person_page_obj %}
+        {% for person in people %}
           <div class="poster">
             <div class="img">
               <div>
@@ -33,11 +33,29 @@
             </div>
           </div>
         {% endfor %}
-        {% include 'mixins/page_number.html' with section_name="people" page_obj=person_page_obj %}
         <a href="{% url 'people:person-list' %}">
           Go to People List
         </a>
       </section>
+      {% if max_page_obj.has_previous %}
+        {% if page_sector|add:-4 <= 1 %}
+          <a href="?page=1">Prev</a>
+        {% else %}
+          <a href="?page={{page_sector|add:-4}}">Prev</a>
+        {% endif %}
+      {% endif %}
+      {% for number in '12345'|make_list %}
+        {% if page_sector|add:number <= max_page_obj.paginator.num_pages %}
+          <a href="?page={{page_sector|add:number}}">{{page_sector|add:number}}</a>
+        {% endif %}
+      {% endfor %}
+      {% if max_page_obj.has_next %}
+        {% if page_sector|add:6 >= max_page_obj.paginator.num_pages %}
+          <a href="?page={{max_page_obj.paginator.num_pages}}">Next</a>
+        {% else %}
+          <a href="?page={{page_sector|add:6}}">Next</a>
+        {% endif %}
+      {% endif %}
     </div>
   </div>
 {% endblock content %}
