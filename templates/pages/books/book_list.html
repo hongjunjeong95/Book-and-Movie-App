@@ -23,7 +23,10 @@
         </div>
       </div>
     {% endfor %}
-    {% include 'mixins/page_number.html' %}
+    <div class="flex justify-center mt-20 itmes-center">
+    {% comment %}  {% endcomment %}
+      {% include 'mixins/page_number.html' with page=page_obj %}
+    </div>
   </section>
 
 {% endblock content%}
