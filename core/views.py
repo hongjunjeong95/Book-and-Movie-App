@@ -28,13 +28,16 @@ class HomeView(ListView):
 
 
 def homeView(request):
+
+    """Home View Definition"""
+
     books = Book.objects.all()
     movies = Movie.objects.all()
     people = Person.objects.all()
 
-    book_paginator = Paginator(books, 8)
-    movie_paginator = Paginator(movies, 8)
-    person_paginator = Paginator(people, 8)
+    book_paginator = Paginator(books, 10)
+    movie_paginator = Paginator(movies, 10)
+    person_paginator = Paginator(people, 10)
 
     book_page_number = request.GET.get("books_page", 1)
     movie_page_number = request.GET.get("movies_page", 1)

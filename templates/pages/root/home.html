@@ -6,8 +6,18 @@
   <div class="flex flex-col items-center justify-items-center">
     <div class="w-10/12">
       {% comment %}  {% endcomment %}
-      {% include 'mixins/book_and_movie_section.html' with section_name="books" page_obj=book_page_obj %}
-      {% include 'mixins/book_and_movie_section.html' with section_name="movies" page_obj=movie_page_obj %}
+      <section>
+        {% include 'mixins/book_and_movie_section.html' with section_name="books" page_obj=book_page_obj %}
+        <a href="{% url 'books:book-list' %}">
+          Go to Book List
+        </a>
+      </section>
+      <section>
+        {% include 'mixins/book_and_movie_section.html' with section_name="movies" page_obj=movie_page_obj %}
+        <a href="{% url 'movies:movie-list' %}">
+          Go to Movie List
+        </a>
+      </section>
 
       <section class="people_section">
         <h4>Latest People</h4>
@@ -24,6 +34,9 @@
           </div>
         {% endfor %}
         {% include 'mixins/page_number.html' with section_name="people" page_obj=person_page_obj %}
+        <a href="{% url 'people:person-list' %}">
+          Go to People List
+        </a>
       </section>
     </div>
   </div>

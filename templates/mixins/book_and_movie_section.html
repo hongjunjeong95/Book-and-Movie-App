@@ -1,20 +1,18 @@
-<section class="section">
-  <h4>Latest
-    {{section_name|capfirst}}</h4>
-  {% for obj in page_obj %}
-    <div class="poster">
-      <div class="cover_img">
-        <div class="title">
-          {{obj.title}}
-        </div>
-        <div>
-          {{obj.rating}}
-        </div>
-        <div>
-          {{obj.year}}
-        </div>
+<h4>Latest
+  {{section_name|capfirst}}</h4>
+{% for obj in page_obj %}
+  <div class="poster">
+    <div class="cover_img">
+      <div class="title">
+        {{obj.title}}
+      </div>
+      <div>
+        {{obj.rating}}
+      </div>
+      <div>
+        {{obj.year}}
       </div>
     </div>
-  {% endfor %}
-  {% include 'mixins/page_number.html' %}
-</section>
+  </div>
+{% endfor %}
+{% include 'mixins/page_number.html' %}
