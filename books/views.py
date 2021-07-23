@@ -9,7 +9,7 @@ class BookListView(ListView):
     model = Book
     template_name = "pages/books/book_list.html"
     context_object_name = "books"
-    paginate_by = 3
+    paginate_by = 10
     paginate_orphans = 5
     ordering = ["-year"]
 
@@ -19,5 +19,4 @@ class BookListView(ListView):
         page_sector = page_sector * 5
         context = super().get_context_data()
         context["page_sector"] = page_sector
-        print(context)
         return context

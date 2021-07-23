@@ -9,7 +9,7 @@ class MovieListView(ListView):
     model = Movie
     template_name = "pages/movies/movie_list.html"
     context_object_name = "movies"
-    paginate_by = 12
+    paginate_by = 10
     paginate_orphans = 6
     ordering = "created"
 

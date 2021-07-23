@@ -5,5 +5,27 @@
 {% endblock page_title %}
 
 {% block content %}
-  Movie list
+  <section class="section">
+    <h4>Latest Movies</h4>
+    {% for obj in page_obj %}
+      <div class="poster">
+        <div class="cover_img">
+          <div class="title">
+            {{obj.title}}
+          </div>
+          <div>
+            {{obj.rating}}
+          </div>
+          <div>
+            {{obj.year}}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="flex justify-center mt-20 itmes-center">
+    {% comment %}  {% endcomment %}
+      {% include 'mixins/page_number.html' with page=page_obj %}
+    </div>
+  </section>
+
 {% endblock content%}
