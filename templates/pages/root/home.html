@@ -8,10 +8,11 @@
       {% comment %}  {% endcomment %}
       <section>
         {% include 'mixins/book_and_movie_section.html' with section_name="books" page_obj=books %}
-        <a href="{% url 'books:book-list' %}">
+        <a href="{% url 'books:book-list' %}" class="text-lg font-bold">
           Go to Book List
         </a>
       </section>
+
       <section>
         {% include 'mixins/book_and_movie_section.html' with section_name="movies" page_obj=movies %}
         <a href="{% url 'movies:movie-list' %}">
