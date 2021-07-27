@@ -7,6 +7,11 @@ urlpatterns = [
     path(
         "",
         person_views.PersonListView.as_view(),
-        name="people-list",
-    )
+        name="person-list",
+    ),
+    path(
+        "<int:pk>/",
+        person_views.PeopleDetailView.as_view(),
+        name="person-detail",
+    ),
 ]

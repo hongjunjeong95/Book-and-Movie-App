@@ -15,7 +15,7 @@
           </div>
           <div class="section_grid">
             {% for person in people %}
-              <a class="relative group" href="#">
+              <a class="relative group" href="{% url 'people:person-detail' person.pk %}">
                 <img class="cover_image" src="{{person.photo.url|default_if_none:" "}}" alt="Cover Image">
                 <div class="font-bold">
                   {{person.name}}

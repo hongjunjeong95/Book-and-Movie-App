@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from people.models import Person
 
 
@@ -7,7 +7,7 @@ class PersonListView(ListView):
     """Person List View"""
 
     model = Person
-    template_name = "pages/people/people_list.html"
+    template_name = "pages/people/person_list.html"
     context_object_name = "people"
     paginate_by = 12
     paginate_orphans = 6
@@ -20,3 +20,11 @@ class PersonListView(ListView):
         context = super().get_context_data()
         context["page_sector"] = page_sector
         return context
+
+
+class PeopleDetailView(DetailView):
+
+    """People Detail View"""
+
+    model = Person
+    template_name = "pages/people/person_detail.html"

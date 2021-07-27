@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+  {{person.name}}
+{% endblock page_title %}
+
+{% block content %}
+  <div class="w-full mt-20 max-h-full min-h-screen" style="background: rgba(20,20,20,1);">
+    <div class="absolute w-full bg-cover bg-no-repeat bg-center h-full opacity-30" style="background-image:url({{person.photo.url}})"></div>
+    <div class="flex px-20 py-20 justify-between">
+      <div class="flex w-3/4">
+        <img class="mr-4 w-1/4 z-10" src="{{person.photo.url}}" alt="Movie Cover Image">
+        <div class="z-10">
+          <div>
+            <span class="detail_field">Name :</span>
+            <span class="detail_answer">{{person.name}}</span>
+          </div>
+          <div>
+            <span class="detail_field">Kind :</span>
+            <span class="detail_answer">{{person.kind}}</span>
+          </div>
+        </div>
+      </div>
+      {% comment %} <a class="edit_button" href="{% url 'person:person-edit' person.pk %}">Edit Movie</a> {% endcomment %}
+    </div>
+  </div>
+{% endblock content%}
