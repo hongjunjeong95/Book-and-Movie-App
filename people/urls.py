@@ -14,4 +14,9 @@ urlpatterns = [
         person_views.PeopleDetailView.as_view(),
         name="person-detail",
     ),
+    path(
+        "create/",
+        person_views.CreatePersonView.as_view(),
+        name="person-create",
+    ),
 ]

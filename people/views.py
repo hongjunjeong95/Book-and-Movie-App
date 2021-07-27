@@ -1,5 +1,8 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
+from django.shortcuts import redirect, reverse
+
 from people.models import Person
+from people.forms import CreatePersonForm
 
 
 class PersonListView(ListView):
@@ -28,3 +31,16 @@ class PeopleDetailView(DetailView):
 
     model = Person
     template_name = "pages/people/person_detail.html"
+
+
+class CreatePersonView(FormView):
+
+    """Create Person View Definition"""
+
+    form_class = CreatePersonForm
+    template_name = "pages/people/create_person.html"
+
+    def form_valid(self, form):
+        person = form.save()
+        person.save()
+        return redirect(reverse("people:person-detail", kwargs={"pk": person.pk}))
