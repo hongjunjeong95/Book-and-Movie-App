@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+
+.listLink {
+  @apply text-lg font-bold text-blue-500;
+}
+
+@tailwind utilities;

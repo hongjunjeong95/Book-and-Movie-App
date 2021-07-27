@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tailwind:build": "npx tailwindcss -i ./assets/scss/tailwind.scss -o ./static/css/styles.css"
+    "tailwind:build": "npx tailwindcss -i ./assets/scss/styles.scss -o ./static/css/styles.css",
+    "build": "gulp build",
+    "dev": "gulp dev"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,16 @@
   },
   "homepage": "https://github.com/zpskek/Book-and-Movie-App#readme",
   "dependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/register": "^7.14.5",
     "autoprefixer": "^10.3.1",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-csso": "^4.0.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-sass": "^5.0.0",
+    "node-sass": "^6.0.1",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.7"
   }

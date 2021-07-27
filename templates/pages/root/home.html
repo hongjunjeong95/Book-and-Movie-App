@@ -6,17 +6,17 @@
   <div class="flex flex-col items-center justify-items-center">
     <div class="w-10/12">
       {% comment %}  {% endcomment %}
-      <section>
+      <section class="mb-10">
         {% include 'mixins/book_and_movie_section.html' with section_name="books" page_obj=books %}
-        <a href="{% url 'books:book-list' %}" class="text-lg font-bold">
-          Go to Book List
+        <a href="{% url 'books:book-list' %}" class="listLink ">
+          Go to Book List &rarr;
         </a>
       </section>
 
       <section>
         {% include 'mixins/book_and_movie_section.html' with section_name="movies" page_obj=movies %}
-        <a href="{% url 'movies:movie-list' %}">
-          Go to Movie List
+        <a href="{% url 'movies:movie-list' %}" class="listLink">
+          Go to Movie List &rarr;
         </a>
       </section>
 
@@ -34,8 +34,8 @@
             </div>
           </div>
         {% endfor %}
-        <a href="{% url 'people:person-list' %}">
-          Go to People List
+        <a href="{% url 'people:person-list' %}" class="listLink">
+          Go to People List &rarr;
         </a>
       </section>
       {% if max_page_obj.has_previous %}

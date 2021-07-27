@@ -2,10 +2,14 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      inset: {
+        22: "5.5rem",
+      },
+    },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-}
+};
