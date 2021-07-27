@@ -33,9 +33,9 @@ class BookDetailView(DetailView):
     template_name = "pages/books/book_detail.html"
 
 
-class CreateRoomView(FormView):
+class CreateBookmView(FormView):
 
-    """Create Room View Definition"""
+    """Create Book View Definition"""
 
     form_class = CreateBookForm
     template_name = "pages/books/create_book.html"

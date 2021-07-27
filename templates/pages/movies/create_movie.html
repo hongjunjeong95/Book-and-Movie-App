@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+  Create Movie
+{% endblock page_title %}
+
+{% block content %}
+  <div class="background">
+    <div class="wrap">
+      <h1 class="text-3xl font-bold pb-6 pt-3 text-center">Create Movie</h1>
+      <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form_input rounded-tr-lg rounded-tl-lg">
+          <input type="text" name="title" placeholder="Title" required="required">
+        </div>
+
+        <div class="number_input">
+          <input type="number" name="year" class="w-full" min="0" placeholder="Year" required="required">
+        </div>
+
+        <div class="number_input">
+          <input type="number" name="rating" class="w-full" min="0" max="5" placeholder="Rating" required="required">
+        </div>
+
+        <div class="border p-3 border-gray-400 flex justify-between">
+          <input type="text" name="caption" class="p-1 w-full" placeholder="Caption">
+          <input type="file" name="cover_image" class="p-1 w-full">
+        </div>
+
+        <div class="select">
+          <label for="director">Director</label>
+          <select name="director" id="director" required="required">
+            {% for aDirector in form.director %}
+              {{aDirector}}
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="checkbox">
+          <h3>Categories</h3>
+
+          <ul>
+            {% for category in form.categories %}
+              <li>
+                <label for="category_{{category.data.value}}">{{category.data.label}}</label>
+                <input type="checkbox" name="categories" value="{{category.data.value}}" id="category_{{category.data.value}}">
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="checkbox">
+          <h3>Casts</h3>
+
+          <ul>
+            {% for cast in form.casts %}
+              <li>
+                <label for="cast_{{cast.data.value}}">{{cast.data.label}}</label>
+                <input type="checkbox" name="casts" value="{{cast.data.value}}" id="cast_{{cast.data.value}}">
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <button class="form_button">Create</button>
+      </form>
+      <a href="{% url 'movies:movie-list' %}" class="block text-center w-full mt-3 px-1 py-2 bg-gray-500 text-white rounded-lg text-base font-bold tracking-wider outline-none border-none;">Back</a>
+    </div>
+  </div>
+{% endblock content %}

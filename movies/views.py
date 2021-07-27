@@ -1,5 +1,8 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
+from django.shortcuts import redirect, reverse
+
 from movies.models import Movie
+from movies.forms import CreateMovieForm
 
 
 class MovieListView(ListView):
@@ -28,3 +31,17 @@ class MovieDetailView(DetailView):
 
     model = Movie
     template_name = "pages/movies/movie_detail.html"
+
+
+class CreateRoomView(FormView):
+
+    """Create Movie View Definition"""
+
+    form_class = CreateMovieForm
+    template_name = "pages/movies/create_movie.html"
+
+    def form_valid(self, form):
+        movie = form.save()
+        movie.save()
+        form.save_m2m()
+        return redirect(reverse("movies:movie-detail", kwargs={"pk": movie.pk}))
