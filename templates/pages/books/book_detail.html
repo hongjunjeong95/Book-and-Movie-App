@@ -5,11 +5,37 @@
 {% endblock page_title %}
 
 {% block content %}
-  <a href="{% url 'books:book-edit' book.pk%}">Edit Book</a>
-  <section class="section">
-    <h4>{{book.title}}</h4>
-    <img src="{{book.cover_image.url}}" alt="">
-
-  </section>
-
+  <div class="w-full mt-20 h-screen" style="background: rgba(20,20,20,1);">
+    <div class="absolute left-1/4 w-1/2 bg-cover bg-no-repeat bg-center h-full opacity-50" style="background-image:url({{book.cover_image.url}})"></div>
+    <div class="flex px-20 pt-20 justify-between">
+      <div class="flex">
+        <img class="mr-4" src="{{book.cover_image.url}}" alt="Book Cover Image">
+        <div class="z-10">
+          <div>
+            <span class="detail_field">Title :</span>
+            <span class="detail_answer">{{book.title}}</span>
+          </div>
+          <div>
+            <span class="detail_field">The date of publication of the book :</span>
+            <span class="detail_answer">{{book.year}}</span>
+          </div>
+          <div>
+            <span class="detail_field">Rating :</span>
+            <span class="detail_answer">{{book.rating}}
+              / 5.0</span>
+          </div>
+          <div>
+            <span class="detail_field">Category :</span>
+            <span class="detail_answer">{{book.category}}</span>
+          </div>
+          <div>
+            <span class="detail_field">Writer :
+            </span>
+            <span class="detail_answer">{{book.writer}}</span>
+          </div>
+        </div>
+      </div>
+      <a class="block z-10 h-10 font-bold px-4 py-2 border-none rounded-lg bg-green-500 text-white" href="{% url 'books:book-edit' book.pk %}">Edit Book</a>
+    </div>
+  </div>
 {% endblock content%}

@@ -86,4 +86,16 @@
   @apply mt-3 px-1 py-2 bg-green-500 text-white rounded-lg text-base font-bold tracking-wider w-full outline-none border-none;
 }
 
+.bgImg {
+  background-image: url();
+}
+
+.detail_field {
+  @apply font-bold text-lg text-white;
+}
+
+.detail_answer {
+  @apply font-medium text-xl text-white;
+}
+
 @tailwind utilities;
