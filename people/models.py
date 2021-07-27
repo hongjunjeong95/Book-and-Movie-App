@@ -1,4 +1,6 @@
 from django.db import models
+from django.shortcuts import reverse
+
 from core import models as core_models
 
 
@@ -22,6 +24,9 @@ class Person(core_models.TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("people:people-detail", kwargs={"pk": self.pk})
 
     class Meta:
         verbose_name_plural = "People"

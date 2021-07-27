@@ -7,6 +7,6 @@ urlpatterns = [
     path(
         "",
         person_views.PersonListView.as_view(),
-        name="person-list",
+        name="people-list",
     )
 ]

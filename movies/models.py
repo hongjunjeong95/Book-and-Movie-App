@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Q
+from django.shortcuts import reverse
 
 from core import models as core_models
 
@@ -35,3 +36,6 @@ class Movie(core_models.TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("movies:movie-detail", kwargs={"pk": self.pk})
