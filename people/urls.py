@@ -19,4 +19,9 @@ urlpatterns = [
         person_views.CreatePersonView.as_view(),
         name="person-create",
     ),
+    path(
+        "<int:pk>/edit/",
+        person_views.EditPersonView.as_view(),
+        name="person-edit",
+    ),
 ]

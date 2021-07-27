@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, FormView
+from django.views.generic import ListView, DetailView, FormView, UpdateView
 from django.shortcuts import redirect, reverse
 
 from people.models import Person
@@ -44,3 +44,26 @@ class CreatePersonView(FormView):
         person = form.save()
         person.save()
         return redirect(reverse("people:person-detail", kwargs={"pk": person.pk}))
+
+
+class EditPersonView(UpdateView):
+
+    """Edit Person View Definition"""
+
+    model = Person
+    template_name = "pages/people/edit_person.html"
+    fields = (
+        "name",
+        "kind",
+        "photo",
+    )
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["name"].widget.attrs = {"class": "w-full", "placeholder": "Title"}
+        return form
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context

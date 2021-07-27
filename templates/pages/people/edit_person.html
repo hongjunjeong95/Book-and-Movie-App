@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+  Edit Person
+{% endblock page_title %}
+
+{% block content %}
+  <div class="background">
+    <div class="wrap">
+      <h1 class="text-3xl font-bold pb-6 pt-3 text-center">Edit Person</h1>
+      <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form_input rounded-tr-lg rounded-tl-lg">
+          {{form.name}}
+        </div>
+
+        <div class="border p-3 border-gray-400 flex justify-between">
+          <input type="text" name="caption" class="p-1 w-full" placeholder="Caption">
+          <input type="file" name="photo" class="p-1 w-full">
+        </div>
+
+        <div class="select">
+          <label for="kind">Kink</label>
+          {{form.kind}}
+        </div>
+
+        <button class="form_button">Edit</button>
+      </form>
+      <a href="{% url 'people:person-detail' person.pk %}" class="block text-center w-full mt-3 px-1 py-2 bg-gray-500 text-white rounded-lg text-base font-bold tracking-wider outline-none border-none;">Back</a>
+    </div>
+  </div>
+{% endblock content %}

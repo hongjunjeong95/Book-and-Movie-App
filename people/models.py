@@ -26,7 +26,7 @@ class Person(core_models.TimeStampedModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("people:people-detail", kwargs={"pk": self.pk})
+        return reverse("people:person-detail", kwargs={"pk": self.pk})
 
     class Meta:
         verbose_name_plural = "People"
