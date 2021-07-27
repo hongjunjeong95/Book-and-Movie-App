@@ -8,7 +8,7 @@
   <section class="section">
     <h4>Latest Books</h4>
     {% for obj in page_obj %}
-      <div class="poster">
+      <a href="{% url 'books:book-detail' obj.pk %}" class="poster">
         <div class="cover_img">
           <div class="title">
             {{obj.title}}
@@ -20,7 +20,7 @@
             {{obj.year}}
           </div>
         </div>
-      </div>
+      </a>
     {% endfor %}
     <div class="flex justify-center mt-20 itmes-center">
     {% comment %}  {% endcomment %}
