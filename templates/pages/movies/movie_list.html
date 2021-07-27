@@ -1,32 +1,58 @@
 {% extends 'base.html' %}
-
+{% comment %}  {% endcomment %}
 {% block page_title %}
   Movie List
 {% endblock page_title %}
 
 {% block content %}
-  <section class="section">
-    <h4>Latest Movies</h4>
-    <a href="{% url 'movies:movie-create' %}" class="font-bold px-4 py-2 border-none rounded-lg bg-green-500 text-white">Create Book</a>
-    {% for obj in page_obj %}
-      <div class="poster">
-        <div class="cover_img">
-          <div class="title">
-            {{obj.title}}
+  <div class="mt-40 flex flex-col items-center justify-items-center h-screen">
+    <div class="w-11/12 h-full">
+      <div class="flex flex-col">
+        <section class="home_section">
+          <div class="flex justify-between items-center mb-4">
+            <h4 class="text-2xl font-bold ">Latest Movies</h4>
+            <a href="{% url 'movies:movie-create' %}" class="font-bold px-4 py-2 border-none rounded-lg bg-green-500 text-white">Create Movie</a>
           </div>
-          <div>
-            {{obj.rating}}
+          <div class="section_grid">
+            {% for movie in movies %}
+              <a class="relative group" href="{% url 'movies:movie-detail' movie.pk %}">
+                <img class="cover_image" src="{{movie.cover_image.url|default_if_none:" "}}" alt="Cover Image">
+                <div class="font-bold text-gray-600 group-hover:opacity-100 absolute bottom-22 right-3 opacity-0">
+                  {{movie.rating}}
+                  / 5.0
+                </div>
+                <div class="font-bold">
+                  {{movie.title|truncatechars:29}}
+                </div>
+                <div>
+                  {{movie.year}}
+                </div>
+              </a>
+            {% endfor %}
           </div>
-          <div>
-            {{obj.year}}
-          </div>
+        </section>
+        <div class="flex justify-center mb-20">
+          {% if page_obj.has_previous %}
+            {% if page_sector|add:-4 <= 1 %}
+              <a href="?page=1" class="mr-3 text-lg font-semibold">Prev</a>
+            {% else %}
+              <a href="?page={{page_sector|add:-4}}" class="mr-3 text-lg font-semibold">Prev</a>
+            {% endif %}
+          {% endif %}
+          {% for number in '12345'|make_list %}
+            {% if page_sector|add:number <= page_obj.paginator.num_pages %}
+              <a href="?page={{page_sector|add:number}}" class="mr-2 py-1 px-2 text-lg rounded {% if page_sector|add:number == page_obj.number %} bg-green-400 text-white {% else %}text-gray-700 bg-gray-200{% endif %} hover:bg-green-200 hover:text-white">{{page_sector|add:number}}</a>
+            {% endif %}
+          {% endfor %}
+          {% if page_obj.has_next %}
+            {% if page_sector|add:6 >= page_obj.paginator.num_pages %}
+              <a href="?page={{page_obj.paginator.num_pages}}" class="ml-1 text-lg font-semibold">Next</a>
+            {% else %}
+              <a href="?page={{page_sector|add:6}}" class="ml-1 text-lg font-semibold">Next</a>
+            {% endif %}
+          {% endif %}
         </div>
       </div>
-    {% endfor %}
-    <div class="flex justify-center mt-20 itmes-center">
-    {% comment %}  {% endcomment %}
-      {% include 'mixins/page_number.html' with page=page_obj %}
     </div>
-  </section>
-
+  </div>
 {% endblock content%}
