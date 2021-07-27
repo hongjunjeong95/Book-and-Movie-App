@@ -1,3 +1,4 @@
+import random
 from django.core.management.base import BaseCommand
 from django_seed import Seed
 from people import models as people_models
@@ -21,6 +22,7 @@ class Command(BaseCommand):
             total,
             {
                 "name": lambda x: seeder.faker.name(),
+                "photo": lambda x: f"people_images/{random.randint(1,10)}.jfif",
             },
         )
         seeder.execute()
