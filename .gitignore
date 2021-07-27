@@ -140,3 +140,6 @@ cython_debug/
 
 # compare code
 sample.py
+
+# npm
+node_modules
