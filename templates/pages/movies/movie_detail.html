@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+  {{movie.title}}
+{% endblock page_title %}
+
+{% block content %}
+  <div class="w-full mt-20 max-h-full min-h-screen" style="background: rgba(20,20,20,1);">
+    <div class="absolute left-1/4 w-1/2 bg-cover bg-no-repeat bg-center h-full opacity-30" style="background-image:url({{movie.cover_image.url}})"></div>
+    <div class="flex px-20 py-20 justify-between">
+      <div class="flex">
+        <img class="mr-4 w-1/4 z-10" src="{{movie.cover_image.url}}" alt="Movie Cover Image">
+        <div class="z-10">
+          <div>
+            <span class="detail_field">Title :</span>
+            <span class="detail_answer">{{movie.title}}</span>
+          </div>
+          <div>
+            <span class="detail_field">Releasing Date :</span>
+            <span class="detail_answer">{{movie.year}}</span>
+          </div>
+          <div>
+            <span class="detail_field">Rating :</span>
+            <span class="detail_answer">{{movie.rating}}
+              / 5.0</span>
+          </div>
+          <div>
+            <span class="detail_field">Director :</span>
+            <span class="detail_answer">{{movie.director}}</span>
+          </div>
+          <div>
+            <span class="detail_field">Categories :
+            </span>
+            {% for category in movie.categories.all %}
+              {% if forloop.last %}
+                <span class="detail_answer">{{category}}</span>
+              {% else %}
+                <span class="detail_answer">{{category}}, </span>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div>
+            <span class="detail_field">Casts :
+            </span>
+            {% for cast in movie.casts.all %}
+              {% if forloop.last %}
+                <span class="detail_answer">{{cast}}</span>
+              {% else %}
+                <span class="detail_answer">{{cast}}, </span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% comment %} <a class="block z-10 h-10 font-bold px-4 py-2 border-none rounded-lg bg-green-500 text-white" href="{% url 'books:movie-edit' movie.pk %}">Edit Movie</a> {% endcomment %}
+    </div>
+  </div>
+{% endblock content%}

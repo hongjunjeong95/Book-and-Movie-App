@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from movies.models import Movie
 
 
@@ -20,3 +20,11 @@ class MovieListView(ListView):
         context = super().get_context_data()
         context["page_sector"] = page_sector
         return context
+
+
+class MovieDetailView(DetailView):
+
+    """Movie Detail View"""
+
+    model = Movie
+    template_name = "pages/movies/movie_detail.html"
