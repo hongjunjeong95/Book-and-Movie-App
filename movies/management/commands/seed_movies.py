@@ -33,6 +33,7 @@ class Command(BaseCommand):
                 "year": lambda x: random.randint(1900, 2021),
                 "rating": lambda x: random.randint(0, 5),
                 "director": lambda x: random.choice(directors),
+                "cover_image": lambda x: f"movie_cover_images/{random.randint(1,10)}.jpg",
             },
         )
         created_movies = seeder.execute()
