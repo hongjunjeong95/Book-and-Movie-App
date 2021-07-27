@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+  Edit Book
+{% endblock page_title %}
+
+{% block content %}
+  <div class="background">
+    <div class="wrap">
+      <h1 class="text-3xl font-bold pb-6 pt-3 text-center">Edit Book</h1>
+      <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form_input rounded-tr-lg rounded-tl-lg">
+          {{form.title}}
+        </div>
+
+        <div class="number_input">
+          {{form.year}}
+        </div>
+
+        <div class="number_input">
+          {{form.rating}}
+        </div>
+
+        <div class="border p-3 border-gray-400 flex justify-between">
+          <input type="text" name="caption" class="p-1 w-full" placeholder="Caption">
+          <input type="file" name="photo" class="p-1 w-full">
+        </div>
+
+        <div class="select">
+          <label for="category">Category</label>
+          {{form.category}}
+        </div>
+
+        <div class="select">
+          <label for="writer">Writer</label>
+          {{form.writer}}
+        </div>
+
+        <button class="form_button">Edit</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}

@@ -5,6 +5,7 @@
 {% endblock page_title %}
 
 {% block content %}
+  <a href="{% url 'books:book-edit' book.pk%}">Edit Book</a>
   <section class="section">
     <h4>{{book.title}}</h4>
 

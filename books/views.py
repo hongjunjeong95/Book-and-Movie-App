@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, FormView
+from django.views.generic import ListView, DetailView, FormView, UpdateView
 from django.shortcuts import redirect, reverse
 
 from books.models import Book
@@ -45,3 +45,33 @@ class CreateRoomView(FormView):
         book.save()
 
         return redirect(reverse("books:book-detail", kwargs={"pk": book.pk}))
+
+
+class EditBookView(UpdateView):
+
+    """Edit Book View Definition"""
+
+    model = Book
+    template_name = "pages/books/edit_book.html"
+    fields = (
+        "title",
+        "year",
+        "rating",
+        "category",
+        "writer",
+    )
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["title"].widget.attrs = {"class": "w-full", "placeholder": "Title"}
+        form.fields["year"].widget.attrs = {"class": "w-full", "placeholder": "Year"}
+        form.fields["rating"].widget.attrs = {
+            "class": "w-full",
+            "placeholder": "Rating",
+        }
+        return form
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
