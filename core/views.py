@@ -19,8 +19,6 @@ def homeView(request):
     person_paginator = Paginator(people, 10, orphans=5)
 
     page = int(request.GET.get("page", 1))
-    page_sector = (page - 1) // 5
-    page_sector = page_sector * 5
 
     try:
         books = book_paginator.get_page(int(page))
@@ -37,6 +35,7 @@ def homeView(request):
     except EmptyPage:
         people = None
 
+    print(books, movies, people)
     book_count = books.paginator.num_pages
     movie_count = movies.paginator.num_pages
     people_count = people.paginator.num_pages
@@ -49,6 +48,11 @@ def homeView(request):
     if max_page_obj.paginator.num_pages < people_count:
         max_page_obj = people
 
+    if page > max_page_obj.paginator.num_pages:
+        page = max_page_obj.paginator.num_pages
+
+    page_sector = (page - 1) // 5
+    page_sector = page_sector * 5
     return render(
         request,
         "pages/root/home.html",
