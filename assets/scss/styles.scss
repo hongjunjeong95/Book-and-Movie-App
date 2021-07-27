@@ -98,4 +98,8 @@
   @apply font-medium text-xl text-white;
 }
 
+.edit_button {
+  @apply z-10 w-32 h-10 text-center flex items-center justify-center font-bold border-none rounded-lg bg-green-500 text-white;
+}
+
 @tailwind utilities;
