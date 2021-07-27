@@ -7,7 +7,7 @@ class PersonListView(ListView):
     """Person List View"""
 
     model = Person
-    template_name = "pages/people/person_list.html"
+    template_name = "pages/people/people_list.html"
     context_object_name = "people"
     paginate_by = 12
     paginate_orphans = 6
