@@ -2,7 +2,7 @@
   {{section_name|capfirst}}</h4>
 {% for obj in page_obj %}
   <div class="poster">
-    <div class="cover_img">
+    <img src={% if obj.cover_image %} "{{obj.cover_image.url}}" {% endif %} alt="Cover Image">
       <div class="title">
         {{obj.title}}
       </div>
@@ -12,6 +12,6 @@
       <div>
         {{obj.year}}
       </div>
-    </div>
+    </img>
   </div>
 {% endfor %}

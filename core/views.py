@@ -10,7 +10,7 @@ def homeView(request):
 
     """Home View Definition"""
 
-    books = Book.objects.all().order_by("pk")
+    books = Book.objects.all().order_by("-pk")
     movies = Movie.objects.all().order_by("pk")
     people = Person.objects.all().order_by("pk")
 
