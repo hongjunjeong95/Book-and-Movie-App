@@ -8,6 +8,7 @@
   <a href="{% url 'books:book-edit' book.pk%}">Edit Book</a>
   <section class="section">
     <h4>{{book.title}}</h4>
+    <img src="{{book.cover_image.url}}" alt="">
 
   </section>
 

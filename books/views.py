@@ -43,7 +43,6 @@ class CreateRoomView(FormView):
     def form_valid(self, form):
         book = form.save()
         book.save()
-
         return redirect(reverse("books:book-detail", kwargs={"pk": book.pk}))
 
 

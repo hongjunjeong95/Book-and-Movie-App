@@ -14,6 +14,7 @@ class CreateBookForm(forms.ModelForm):
             "rating",
             "category",
             "writer",
+            "cover_image",
         )
 
     def save(self, *args, **kwargs):
