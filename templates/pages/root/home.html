@@ -58,15 +58,17 @@
           <h4 class="text-2xl font-bold mb-4">Latest People</h4>
           <div class="section_grid">
             {% for person in people %}
-              <div class="">
-                <img class="cover_image" src="{{person.photo.url}}" alt="">
-                <div class="font-bold">
-                  {{person.name|truncatechars:29}}
+              <a class="relative group" href="{% url 'people:person-detail' person.pk %}">
+                <div class="">
+                  <img class="cover_image" src="{{person.photo.url}}" alt="">
+                  <div class="font-bold">
+                    {{person.name|truncatechars:29}}
+                  </div>
+                  <div>
+                    {{person.kind|capfirst}}
+                  </div>
                 </div>
-                <div>
-                  {{person.kind|capfirst}}
-                </div>
-              </div>
+              </a>
             {% endfor %}
           </div>
           <a href="{% url 'people:person-list' %}" class="listLink">
