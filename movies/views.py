@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, FormView
+from django.views.generic import ListView, DetailView, FormView, UpdateView
 from django.shortcuts import redirect, reverse
 
 from movies.models import Movie
@@ -45,3 +45,34 @@ class CreateRoomView(FormView):
         movie.save()
         form.save_m2m()
         return redirect(reverse("movies:movie-detail", kwargs={"pk": movie.pk}))
+
+
+class EditMovieView(UpdateView):
+
+    """Edit Movie View Definition"""
+
+    model = Movie
+    template_name = "pages/movies/edit_movie.html"
+    fields = (
+        "title",
+        "year",
+        "rating",
+        "director",
+        "categories",
+        "casts",
+    )
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["title"].widget.attrs = {"class": "w-full", "placeholder": "Title"}
+        form.fields["year"].widget.attrs = {"class": "w-full", "placeholder": "Year"}
+        form.fields["rating"].widget.attrs = {
+            "class": "w-full",
+            "placeholder": "Rating",
+        }
+        return form
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context

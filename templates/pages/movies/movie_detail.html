@@ -35,7 +35,8 @@
               {% if forloop.last %}
                 <span class="detail_answer">{{category}}</span>
               {% else %}
-                <span class="detail_answer">{{category}}, </span>
+                <span class="detail_answer">{{category}},
+                </span>
               {% endif %}
             {% endfor %}
           </div>
@@ -46,13 +47,14 @@
               {% if forloop.last %}
                 <span class="detail_answer">{{cast}}</span>
               {% else %}
-                <span class="detail_answer">{{cast}}, </span>
+                <span class="detail_answer">{{cast}},
+                </span>
               {% endif %}
             {% endfor %}
           </div>
         </div>
       </div>
-      {% comment %} <a class="block z-10 h-10 font-bold px-4 py-2 border-none rounded-lg bg-green-500 text-white" href="{% url 'books:movie-edit' movie.pk %}">Edit Movie</a> {% endcomment %}
+      <a class="block z-10 h-10 font-bold px-4 py-2 border-none rounded-lg bg-green-500 text-white" href="{% url 'movies:movie-edit' movie.pk %}">Edit Movie</a>
     </div>
   </div>
 {% endblock content%}
