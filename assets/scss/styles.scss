@@ -102,4 +102,11 @@
   @apply z-10 w-32 h-10 text-center flex items-center justify-center font-bold border-none rounded-lg bg-green-500 text-white;
 }
 
+.nav_link {
+  @apply font-semibold text-gray-700  hover:border-gray-600 border-b-2 border-transparent;
+  a {
+    @apply block py-7 px-4;
+  }
+}
+
 @tailwind utilities;
