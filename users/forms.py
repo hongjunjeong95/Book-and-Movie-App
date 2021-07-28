@@ -75,3 +75,37 @@ class SignUpForm(forms.ModelForm):
         user.username = email
         user.set_password(password)
         user.save()
+
+
+class LoginForm(forms.ModelForm):
+
+    """Login Form"""
+
+    class Meta:
+        model = User
+        fields = {"email", "password"}
+        widgets = {
+            "email": forms.EmailInput(attrs={"placeholder": "Email"}),
+            "password": forms.PasswordInput(attrs={"placeholder": "Password"}),
+        }
+
+    def clean__email(self):
+        email = self.cleaned_data.get("email")
+        try:
+            User.objects.get(email=email)
+            return email
+        except User.DoesNotExist:
+            self.add_error("email", forms.ValidationError("User does not exist"))
+
+    def clean(self):
+        password = self.cleaned_data.get("password")
+        email = self.cleaned_data.get("email")
+        try:
+            user = User.objects.get(email=email)
+            if user.check_password(password):
+                return self.cleaned_data
+            else:
+                self.add_error("password", forms.ValidationError("Password is wrong"))
+        except User.DoesNotExist:
+            self.add_error("email", forms.ValidationError("User does not exist"))
+        return super().clean()

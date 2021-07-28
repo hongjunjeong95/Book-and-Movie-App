@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+  Login
+{% endblock page_title %}
+
+{% block content %}
+  <div class="min-h-screen pb-20 flex justify-center">
+    <div class="background">
+      <div class="wrap">
+        <form action="{% url 'users:login' %}" method="post" class="form">
+          {% csrf_token %}
+          <div class="form_input rounded-tl-lg rounded-tr-lg">
+            {{form.email.errors}}
+            {{form.email}}
+          </div>
+          <div class="form_input rounded-bl-lg rounded-br-lg">
+            {{form.password.errors}}
+            {{form.password}}
+          </div>
+          <button class="form_button">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
