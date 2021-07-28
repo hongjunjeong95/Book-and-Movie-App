@@ -1,0 +1,33 @@
+<ul class="flex place-self-end">
+  {% if user.is_authenticated %}
+    <li class="nav_link">
+      {% if request.session.is_hosting %}
+        {% comment %} <a href="{% url 'rooms:create-room' %}">Create Room</a> {% endcomment %}
+      {% else %}
+        {% comment %} <a href="{% url 'reservations:list' user.pk %}">Reserved Rooms</a> {% endcomment %}
+      {% endif %}
+    </li>
+    <li class="nav_link">
+      {% comment %} <a href="{% url 'users:switch-hosting' %}">
+        {% if request.session.is_hosting %}
+          Guest mode
+        {% else %}
+          Host mode
+        {% endif %} {% endcomment %}
+      </a>
+    </li>
+    <li class="nav_link">
+      {% comment %} <a href="{% url 'users:profile' user.pk %}">Profile</a> {% endcomment %}
+    </li>
+    <li class="nav_link">
+      {% comment %} <a href="{% url 'users:logout' %}">Log Out</a> {% endcomment %}
+    </li>
+  {% else %}
+    <li class="nav_link">
+      {% comment %} <a href="{% url 'users:login' %}">Log In</a> {% endcomment %}
+    </li>
+    <li class="nav_link">
+      <a href="{% url 'users:signup' %}">Sign Up</a>
+    </li>
+  {% endif %}
+</ul>

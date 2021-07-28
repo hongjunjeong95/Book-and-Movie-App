@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+  Sign Up
+{% endblock page_title %}
+
+{% block search-bar %}
+  <div></div>
+{% endblock search-bar %}
+
+{% block content %}
+  <div class="py-20">
+    <div class="background">
+      <div class="wrap">
+        <form action="{% url 'users:signup' %}" method="post" class="form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form_input rounded-tl-lg rounded-tr-lg">
+            {{form.first_name}}
+          </div>
+          <div class="form_input">
+            {{form.last_name}}
+          </div>
+          <div class="form_input">
+            {{form.email}}
+          </div>
+          <div class="form_input">
+            {{form.password}}
+          </div>
+          <div class="form_input">
+            {{form.password1}}
+          </div>
+          <div class="form_input">
+            {{form.bio}}
+          </div>
+          <div class="select">
+            <label for="{{form.preference.id_for_label}}">preference :
+            </label>
+            {{form.preference}}
+          </div>
+          <div class="select">
+            <label for="{{form.language.id_for_label}}">Language :
+            </label>
+            {{form.language}}
+          </div>
+          <div class="select">
+            <label for="{{form.fav_book_category.id_for_label}}">Favorite Book Category :</label>
+            {{form.fav_book_category}}
+          </div>
+          <div class="select">
+            <label for="{{form.fav_movie_category.id_for_label}}">Favorite Movie Category :</label>
+            {{form.fav_movie_category}}
+          </div>
+          <button class="form_button">Sign up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
