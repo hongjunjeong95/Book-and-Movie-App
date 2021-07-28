@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
@@ -43,3 +44,9 @@ class LoginView(FormView):
         else:
             return redirect(reverse("users:login"))
         return super().form_valid(form)
+
+
+@login_required
+def log_out(request):
+    logout(request)
+    return redirect(reverse("core:home"))

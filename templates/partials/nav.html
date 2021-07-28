@@ -20,7 +20,7 @@
       {% comment %} <a href="{% url 'users:profile' user.pk %}">Profile</a> {% endcomment %}
     </li>
     <li class="nav_link">
-      {% comment %} <a href="{% url 'users:logout' %}">Log Out</a> {% endcomment %}
+      <a href="{% url 'users:logout' %}">Log Out</a>
     </li>
   {% else %}
     <li class="nav_link">

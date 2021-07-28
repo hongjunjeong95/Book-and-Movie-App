@@ -122,3 +122,6 @@ AUTH_USER_MODEL = "users.User"
 # Media
 MEDIA_ROOT = BASE_DIR / "uploads"
 MEDIA_URL = "/media/"
+
+# LOGIN_URL
+LOGIN_URL = "/users/login/"
