@@ -38,4 +38,4 @@ class Command(BaseCommand):
         )
 
         seeder.execute()
-        self.stdout.write(self.style.SUCCESS(f"Create {NAME}"))
+        self.stdout.write(self.style.SUCCESS(f"Create {total} {NAME}"))

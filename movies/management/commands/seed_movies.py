@@ -54,4 +54,4 @@ class Command(BaseCommand):
                 if magic_number % 2 == 0:
                     movie.casts.add(cast)
 
-        self.stdout.write(self.style.SUCCESS(f"Create {NAME}"))
+        self.stdout.write(self.style.SUCCESS(f"Create {total} {NAME}"))
