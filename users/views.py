@@ -1,11 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
 from django.db.utils import IntegrityError
 
 from users.forms import LoginForm, SignUpForm
+from users.models import User
 
 
 class SignUpView(FormView):
@@ -50,3 +51,12 @@ class LoginView(FormView):
 def log_out(request):
     logout(request)
     return redirect(reverse("core:home"))
+
+
+class UserProfileView(DetailView):
+
+    """User Profile View"""
+
+    model = User
+    context_object_name = "user_obj"
+    template_name = "pages/users/user_profile.html"

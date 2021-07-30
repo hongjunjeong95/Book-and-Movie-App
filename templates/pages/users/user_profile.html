@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+
+{% block page_title %}
+  {{user_obj.first_name}}'s Profile
+{% endblock page_title %}
+
+{% block search-bar %}
+<div></div>
+{% endblock search-bar %}
+
+{% block content %}
+  <div class="py-20">
+    <div class="grid grid-cols-3 items-center px-16 mb-20">
+      <div></div>
+      <div class="profile w-full">
+        <div class="profile__info">
+          {% comment %} <div class="mb-4">
+            {% include 'mixins/avatar.html' with user=user_obj %}
+          </div> {% endcomment %}
+          <div class="info">
+            <h4>First name</h4>
+            <span>{{user_obj.first_name|capfirst}}</span>
+          </div>
+          
+          {% if user_obj.last_name %}
+          <div class="info">
+            <h4>Last name</h4>
+            <span>{{user_obj.last_name|capfirst}}</span>
+          </div>
+          {% endif %}
+            
+          {% if user_obj.email %}
+          <div class="info">
+            <h4>Email</h4>
+            <span>{{user_obj.email}}</span>
+          </div>        
+          {% endif %}
+            
+        </div>
+        <div class="profile__info">
+          {% if user_obj.preference %}
+          <div class="info">
+            <h4>Preference</h4>
+            <span>{{user_obj.preference}}</span>
+          </div>
+          {% endif %}
+            
+          {% if user_obj.language %}
+          <div class="info">
+            <h4>Language</h4>
+            <span>{{user_obj.language}}</span>
+          </div>
+          {% endif %}
+            
+          {% if user_obj.fav_book_category %}
+          <div class="info">
+            <h4>Favorite Book Category</h4>
+            <span>{{user_obj.fav_book_category}}</span>
+          </div>
+          {% endif %}
+            
+          {% if user_obj.fav_movie_category %}
+          <div class="info">
+            <h4>Favorite Movie Category</h4>
+            <span>{{user_obj.fav_movie_category}}</span>          
+          </div>
+          {% endif %}
+          
+          {% if user_obj.bio %}
+            <div class="info flex-col mt-3">
+              <h4>Bio</h4>
+              <div class="text-justify line-clamp-6 w-full">&emsp;{{user_obj.bio}}</div>
+            </div>
+          {% endif %}
+        </div>
+
+        {% if user_obj.pk == user.pk %}
+          <button class="button my-6 w-3/4">
+            {% comment %} <a href="{% url 'users:update-profile' user.pk %}">Edit Profile</a> {% endcomment %}
+          </button>
+        {% endif %}
+      </div>
+
+      <div class="w-full h-full flex flex-col justify-start items-center">
+        <button class="button w-1/2 bg-red-500">
+          {% comment %} <a href="{% url 'lists:favs' %}">My Favorite Home List ({{list_room_count}})</a> {% endcomment %}
+        </button>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
