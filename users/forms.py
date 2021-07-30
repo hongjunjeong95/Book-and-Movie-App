@@ -109,39 +109,3 @@ class LoginForm(forms.ModelForm):
         except User.DoesNotExist:
             self.add_error("email", forms.ValidationError("User does not exist"))
         return super().clean()
-
-
-class UpdateProfileForm(forms.ModelForm):
-
-    """Update Profile Form"""
-
-    class Meta:
-        model = User
-        fields = {
-            "first_name",
-            "last_name",
-            "email",
-            "language",
-            "preference",
-            "fav_book_category",
-            "fav_movie_category",
-            "bio",
-        }
-        widgets = {
-            "first_name": forms.TextInput(
-                attrs={"placeholder": "First name", "required": True}
-            ),
-            "last_name": forms.TextInput(
-                attrs={"placeholder": "Last name", "required": True}
-            ),
-            "email": forms.EmailInput(attrs={"placeholder": "Email", "required": True}),
-            "bio": forms.Textarea(
-                attrs={"placeholder": "Bio", "class": "resize-none w-full"}
-            ),
-        }
-
-    def save(self):
-        user = super().save(commit=False)
-        email = self.cleaned_data.get("email")
-        user.username = email
-        user.save()

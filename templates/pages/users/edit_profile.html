@@ -43,17 +43,22 @@
         {% endif %} {% endcomment %}
 
         <div class="select">
-          <label for="language">Prefenrece</label>
+          <label for="preference">Prefenrece</label>
           {{form.preference}}
+        </div>
+
+        <div class="select">
+          <label for="language">Language</label>
+          {{form.language}}
         </div>
         
         <div class="select">
-          <label for="currency">Favorite Book Category</label>
+          <label for="fav_book_category">Favorite Book Category</label>
           {{form.fav_book_category}}
         </div>
 
         <div class="select">
-          <label for="currency">Favorite Movie Category</label>
+          <label for="fav_movie_category">Favorite Movie Category</label>
           {{form.fav_movie_category}}
         </div>
 

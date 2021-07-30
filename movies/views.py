@@ -33,7 +33,7 @@ class MovieDetailView(DetailView):
     template_name = "pages/movies/movie_detail.html"
 
 
-class CreateRoomView(FormView):
+class CreateMovieView(FormView):
 
     """Create Movie View Definition"""
 
