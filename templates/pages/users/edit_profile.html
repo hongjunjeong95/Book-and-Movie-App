@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+
+{% block page_title %}
+  Edit {{user.first_name}}'s Profile
+{% endblock page_title %}
+
+{% block search-bar %}
+<div></div>
+{% endblock search-bar %}
+
+{% block content %}
+<div class="py-20">
+  <div class="background">
+    <div class="wrap">
+      <div class="flex flex-col items-center justify-center">
+        {% comment %} <div class="mb-4">
+          {% include 'mixins/avatar.html' with user=user %}
+        </div> {% endcomment %}
+      </div>
+      <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form_input rounded-tl-lg rounded-tr-lg">
+          <label for="first_name">First Name</label>
+          {{form.first_name}}
+        </div>
+
+        <div class="form_input">
+          <label for="last_name">Last Name</label>
+          {{form.last_name}}
+        </div>
+
+        <div class="form_input">
+          <label for="email">Email</label>
+          {{form.email}}
+        </div>
+
+        {% comment %} {% if user.login_method == "email" %}
+          <div class="form_input">
+            <label for="avatar">Avatar</label>
+            <input type="file" id="avatar" name="avatar" accept="image/*">
+          </div>
+        {% endif %} {% endcomment %}
+
+        <div class="select">
+          <label for="language">Prefenrece</label>
+          {{form.preference}}
+        </div>
+        
+        <div class="select">
+          <label for="currency">Favorite Book Category</label>
+          {{form.fav_book_category}}
+        </div>
+
+        <div class="select">
+          <label for="currency">Favorite Movie Category</label>
+          {{form.fav_movie_category}}
+        </div>
+
+        <div class="form_input rounded-br-lg rounded-bl-lg">
+          {% comment %} <textarea class="resize-none w-full" rows="10" id="bio" placeholder="Bio" name="bio">{{user.bio}}</textarea> {% endcomment %}
+          {{form.bio}}
+        </div>
+        <button class="form_button">Edit Profile</button>
+      </form>
+      {% if user.login_method == 'email' %}
+        <button class="button bg-red-500">
+          <a href="{% url 'users:change-password' user.pk %}">Change Password</a>
+        </button>
+      {% endif %}
+      <button class="back_button">
+        <a href="{% url 'users:profile' user.pk %}">Back</a>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock content %}

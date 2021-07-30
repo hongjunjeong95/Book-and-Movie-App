@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.views.generic import FormView, DetailView
+from django.views.generic import FormView, DetailView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
 from django.db.utils import IntegrityError
@@ -60,3 +60,58 @@ class UserProfileView(DetailView):
     model = User
     context_object_name = "user_obj"
     template_name = "pages/users/user_profile.html"
+
+
+class UpdateProfileView(UpdateView):
+
+    """Update Profile View Definition"""
+
+    model = User
+    fields = {
+        "first_name",
+        "last_name",
+        "email",
+        "language",
+        "preference",
+        "fav_book_category",
+        "fav_movie_category",
+        "bio",
+    }
+    template_name = "pages/users/edit_profile.html"
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["email"].widget.attrs = {"placeholder": "Email"}
+        form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
+        form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
+        form.fields["bio"].widget.attrs = {
+            "placeholder": "Bio",
+            "class": "resize-none w-full",
+            "rows": "10",
+        }
+        return form
+
+
+# class UpdateProfileView(FormView):
+
+#     """Update Profile View Definition"""
+
+#     form_class = UpdateProfileForm
+#     success_url = reverse_lazy("users:home")
+
+#     template_name = "pages/users/edit_profile.html"
+#     success_message = "Profile Updated"
+
+#     # def get_form(self, form_class=None):
+#     #     form = super().get_form(form_class=form_class)
+#     #     form.fields["email"].widget.attrs = {"placeholder": "Email"}
+#     #     form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
+#     #     form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
+#     #     form.fields["bio"].widget.attrs = {"placeholder": "Bio"}
+#     #     return form
+
+#     def form_valid(self, form):
+#         user = form.save()
+#         user.save()
+#         print(user)
+#         return redirect(reverse("users:user-profile", kwargs={"pk": user.pk}))
