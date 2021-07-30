@@ -58,16 +58,13 @@
         </div>
 
         <div class="form_input rounded-br-lg rounded-bl-lg">
-          {% comment %} <textarea class="resize-none w-full" rows="10" id="bio" placeholder="Bio" name="bio">{{user.bio}}</textarea> {% endcomment %}
           {{form.bio}}
         </div>
         <button class="form_button">Edit Profile</button>
       </form>
-      {% if user.login_method == 'email' %}
-        <button class="button bg-red-500">
-          <a href="{% url 'users:change-password' user.pk %}">Change Password</a>
-        </button>
-      {% endif %}
+      <button class="button bg-red-500">
+        <a href="{% url 'users:change-password' user.pk %}">Change Password</a>
+      </button>
       <button class="back_button">
         <a href="{% url 'users:profile' user.pk %}">Back</a>
       </button>

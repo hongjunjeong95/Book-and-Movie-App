@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
 from django.views.generic import FormView, DetailView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
@@ -91,6 +92,9 @@ class UpdateProfileView(UpdateView):
         }
         return form
 
+    def get_success_url(self):
+        return self.request.user.get_absolute_url()
+
 
 # class UpdateProfileView(FormView):
 
@@ -115,3 +119,73 @@ class UpdateProfileView(UpdateView):
 #         user.save()
 #         print(user)
 #         return redirect(reverse("users:user-profile", kwargs={"pk": user.pk}))
+
+
+# @login_required
+# def change_password(request, pk):
+#     if request.method == "GET":
+#         try:
+#             if request.user.login_method != "email":
+#                 raise EmailLoggedInOnly("Page not found 404")
+#             if request.user.pk != pk:
+#                 raise Http404("Page Not found 404")
+#             user = models.User.objects.get_or_none(pk=pk)
+#             if user is None:
+#                 messages.error(request, "User does not exist")
+#                 return redirect(reverse("core:home"))
+#             return render(
+#                 request,
+#                 "pages/users/change_password.html",
+#                 context={"user": user},
+#             )
+#         except EmailLoggedInOnly as error:
+#             messages.error(request, error)
+#             return redirect("core:home")
+#     elif request.method == "POST":
+#         try:
+#             if request.user.login_method != "email":
+#                 raise EmailLoggedInOnly("Page not found 404")
+#             if request.user.pk != pk:
+#                 raise Http404("Page Not found 404")
+#             user = models.User.objects.get_or_none(pk=pk)
+#             if user is None:
+#                 messages.error(request, "User does not exist")
+#                 return redirect(reverse("core:home"))
+#             old_password = request.POST.get("current_password")
+#             new_password = request.POST.get("new_password")
+#             new_password1 = request.POST.get("verify_password")
+#             user = authenticate(request, username=user.email, password=old_password)
+#             if user is None:
+#                 raise ChangePasswordException("Current password is wrong!")
+
+#             if new_password != new_password1:
+#                 raise ChangePasswordException("New password doesn't match")
+#             user.set_password(new_password)
+#             user.save()
+#             messages.success(request, f"{user.email}'password changed successfully")
+#             login(request, user)
+#             return redirect(reverse("users:profile", kwargs={"pk": pk}))
+#         except ChangePasswordException as error:
+#             messages.error(request, error)
+#             return redirect(reverse("core:home"))
+#         except EmailLoggedInOnly as error:
+#             messages.error(request, error)
+#             return redirect("core:home")
+
+
+class ChangePasswordView(PasswordChangeView):
+    template_name = "pages/users/change_password.html"
+    success_message = "Password changed"
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields["old_password"].widget.attrs = {"placeholder": "Old password"}
+        form.error_messages["password_mismatch"] = "The two password didn't match"
+        form.fields["new_password1"].widget.attrs = {"placeholder": "New password"}
+        form.fields["new_password2"].widget.attrs = {
+            "placeholder": "Verify your new password"
+        }
+        return form
+
+    def get_success_url(self):
+        return self.request.user.get_absolute_url()
