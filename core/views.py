@@ -35,7 +35,6 @@ def homeView(request):
     except EmptyPage:
         people = None
 
-    print(books, movies, people)
     book_count = books.paginator.num_pages
     movie_count = movies.paginator.num_pages
     people_count = people.paginator.num_pages
@@ -53,6 +52,7 @@ def homeView(request):
 
     page_sector = (page - 1) // 5
     page_sector = page_sector * 5
+
     return render(
         request,
         "pages/root/home.html",
