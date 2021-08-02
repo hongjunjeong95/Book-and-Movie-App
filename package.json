@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "tailwind:build": "npx tailwindcss -i ./assets/scss/styles.scss -o ./static/css/styles.css",
-    "build": "gulp build",
-    "dev": "gulp dev"
+    "gulp:build": "gulp build",
+    "gulp:dev": "gulp dev"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,7 @@
 
 .home_section {
   @apply mb-20;
-
+  box-shadow: 2px 8px 35px -16px rgba(30, 30, 30, 0.9);
   .section_grid {
     @apply grid grid-cols-5 gap-3;
     .cover_image {
