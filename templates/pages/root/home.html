@@ -10,19 +10,7 @@
           <h4 class="text-2xl font-bold mb-4">Latest Books</h4>
           <div class="section_grid">
             {% for book in books %}
-              <a class="relative group" href="{% url 'books:book-detail' book.pk %}">
-                <img class="cover_image" src="{{book.cover_image.url|default_if_none:" "}}" alt="Cover Image">
-                <div class="font-bold text-gray-600 group-hover:opacity-100 absolute bottom-22 right-3 opacity-0">
-                  {{book.rating}}
-                  / 5.0
-                </div>
-                <div class="font-bold">
-                  {{book.title|truncatechars:29}}
-                </div>
-                <div>
-                  {{book.year}}
-                </div>
-              </a>
+              {% include 'mixins/book.html' with book=book %}
             {% endfor %}
           </div>
           <a href="{% url 'books:book-list' %}" class="listLink ">
@@ -34,19 +22,7 @@
           <h4 class="text-2xl font-bold mb-4">Latest Movies</h4>
           <div class="section_grid">
             {% for movie in movies %}
-              <a class="relative group" href="{% url 'movies:movie-detail' movie.pk %}">
-                <img class="cover_image" src="{{movie.cover_image.url|default_if_none:" "}}" alt="Cover Image">
-                <div class="font-bold text-gray-600 group-hover:opacity-100 absolute bottom-22 right-3 opacity-0">
-                  {{movie.rating}}
-                  / 5.0
-                </div>
-                <div class="font-bold">
-                  {{movie.title|truncatechars:29}}
-                </div>
-                <div>
-                  {{movie.year}}
-                </div>
-              </a>
+              {% include 'mixins/movie.html' with movie=movie %}
             {% endfor %}
           </div>
           <a href="{% url 'movies:movie-list' %}" class="listLink">
@@ -58,17 +34,7 @@
           <h4 class="text-2xl font-bold mb-4">Latest People</h4>
           <div class="section_grid">
             {% for person in people %}
-              <a class="relative group" href="{% url 'people:person-detail' person.pk %}">
-                <div class="">
-                  <img class="cover_image" src="{{person.photo.url}}" alt="">
-                  <div class="font-bold">
-                    {{person.name|truncatechars:29}}
-                  </div>
-                  <div>
-                    {{person.kind|capfirst}}
-                  </div>
-                </div>
-              </a>
+              {% include 'mixins/person.html' with person=person %}
             {% endfor %}
           </div>
           <a href="{% url 'people:person-list' %}" class="listLink">

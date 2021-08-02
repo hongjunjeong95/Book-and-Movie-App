@@ -1,0 +1,13 @@
+<a class="relative group" href="{% url 'movies:movie-detail' movie.pk %}">
+  <img class="cover_image" src="{{movie.cover_image.url|default_if_none:" "}}" alt="Cover Image">
+  <div class="font-bold text-gray-600 group-hover:opacity-100 absolute bottom-22 right-3 opacity-0">
+    {{movie.rating}}
+    / 5.0
+  </div>
+  <div class="font-bold">
+    {{movie.title|truncatechars:29}}
+  </div>
+  <div>
+    {{movie.year}}
+  </div>
+</a>
