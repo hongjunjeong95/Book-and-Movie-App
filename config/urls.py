@@ -8,7 +8,7 @@ urlpatterns = [
     path("", include("core.urls", namespace="core")),
     path("books/", include("books.urls", namespace="books")),
     path("movies/", include("movies.urls", namespace="movies")),
-    path("genres/", include("categories.urls", namespace="genres")),
+    path("category/", include("categories.urls", namespace="category")),
     path("people/", include("people.urls", namespace="people")),
     path("users/", include("users.urls", namespace="users")),
     path("admin/", admin.site.urls),

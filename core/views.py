@@ -11,6 +11,7 @@ def homeView(request):
 
     """Home View Definition"""
 
+    categories = Category.objects.all().order_by("pk")
     books = Book.objects.all().order_by("-pk")
     movies = Movie.objects.all().order_by("pk")
     people = Person.objects.all().order_by("pk")
@@ -63,6 +64,7 @@ def homeView(request):
             "people": people,
             "page_sector": page_sector,
             "max_page_obj": max_page_obj,
+            "categories": categories,
         },
     )
 

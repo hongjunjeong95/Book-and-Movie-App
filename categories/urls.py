@@ -1,8 +1,8 @@
 from django.urls import path
-from categories import views as genre_views
+from categories import views as category_views
 
-app_name = "genres"
+app_name = "categories"
 
 urlpatterns = [
-    path("", genre_views.GenreListView.as_view(), name="genres"),
+    path("<int:pk>/", category_views.bookAndMovieByCategoryView, name="bookAndMovieByCategory"),
 ]
