@@ -1,6 +1,6 @@
 {% comment %}  {% endcomment %}
 <div class="flex justify-center mb-20">
-  {% if max_page_obj.has_previous %}
+  {% if page_obj.has_previous %}
     {% if page_sector|add:-4 <= 1 %}
       <a href="?page=1" class="mr-3 text-lg font-semibold">Prev</a>
     {% else %}
@@ -8,13 +8,13 @@
     {% endif %}
   {% endif %}
   {% for number in '12345'|make_list %}
-    {% if page_sector|add:number <= max_page_obj.paginator.num_pages %}
-      <a href="?page={{page_sector|add:number}}" class="mr-2 py-1 px-2 text-lg rounded {% if page_sector|add:number == max_page_obj.number %} bg-green-400 text-white {% else %}text-gray-700 bg-gray-200{% endif %} hover:bg-green-200 hover:text-white">{{page_sector|add:number}}</a>
+    {% if page_sector|add:number <= page_obj.paginator.num_pages %}
+      <a href="?page={{page_sector|add:number}}" class="mr-2 py-1 px-2 text-lg rounded {% if page_sector|add:number == page_obj.number %} bg-green-400 text-white {% else %}text-gray-700 bg-gray-200{% endif %} hover:bg-green-200 hover:text-white">{{page_sector|add:number}}</a>
     {% endif %}
   {% endfor %}
-  {% if max_page_obj.has_next %}
-    {% if page_sector|add:6 >= max_page_obj.paginator.num_pages %}
-      <a href="?page={{max_page_obj.paginator.num_pages}}" class="ml-1 text-lg font-semibold">Next</a>
+  {% if page_obj.has_next %}
+    {% if page_sector|add:6 >= page_obj.paginator.num_pages %}
+      <a href="?page={{page_obj.paginator.num_pages}}" class="ml-1 text-lg font-semibold">Next</a>
     {% else %}
       <a href="?page={{page_sector|add:6}}" class="ml-1 text-lg font-semibold">Next</a>
     {% endif %}
