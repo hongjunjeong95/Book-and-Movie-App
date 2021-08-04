@@ -8,14 +8,21 @@
   <div class="mt-40 flex flex-col items-center justify-items-center min-h-screen">
     <div class="w-10/12">
       <div class="flex flex-col">
-        <section class="home_section mt-7 p-8 rounded-lg">
-          <h4 class="text-2xl font-bold mb-4">Books</h4>
+        <section class="home_section mt-10 p-8 rounded-lg">
+          <div class="flex justify-between items-center mb-8">
+            <h4 class="text-2xl font-bold ">Latest Books</h4>
+            <a href="{% url 'books:book-create' %}" class="font-bold px-4 py-2 border-none rounded-lg bg-green-500 text-white">Create Book</a>
+          </div>
           <div class="section_grid">
             {% for book in books %}
               {% include 'mixins/book.html' with book=book %}
             {% endfor %}
           </div>
+          <a href="{% url 'books:book-list' %}" class="listLink ">
+            Go to Book List &rarr;
+          </a>
         </section>
+        
         {% include 'mixins/page_number.html' with page_sector=page_sector page_obj=page_obj%}
       </div>
     </div>
