@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render, reverse
+from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage
 
 from books.models import Book
@@ -75,21 +75,13 @@ def searchView(request):
 
     categories = Category.objects.all().order_by("pk")
 
-    category_name = request.GET.get("category", None)
     searchgin_term = request.GET.get("name", None)
 
     people: Person.objects = None
 
-    if category_name is not None:
-        category = Category.objects.get(name=category_name)
-        books = Book.objects.filter(category=category)
-        movies = Movie.objects.filter(categories=category)
-    elif searchgin_term is not None:
-        books = Book.objects.filter(title__contains=searchgin_term)
-        movies = Movie.objects.filter(title__contains=searchgin_term)
-        people = Person.objects.filter(name__contains=searchgin_term)
-    else:
-        return redirect(reverse("core:home"))
+    books = Book.objects.filter(title__contains=searchgin_term)
+    movies = Movie.objects.filter(title__contains=searchgin_term)
+    people = Person.objects.filter(name__contains=searchgin_term)
 
     book_paginator = Paginator(books, 10, orphans=5)
     movie_paginator = Paginator(movies, 10, orphans=5)
@@ -97,13 +89,12 @@ def searchView(request):
     page = int(request.GET.get("page", 1))
     people_count = 0
 
-    if searchgin_term is not None:
-        person_paginator = Paginator(people, 10, orphans=5)
-        try:
-            people = person_paginator.get_page(int(page))
-        except EmptyPage:
-            people = None
-        people_count = people.paginator.num_pages
+    person_paginator = Paginator(people, 10, orphans=5)
+    try:
+        people = person_paginator.get_page(int(page))
+    except EmptyPage:
+        people = None
+    people_count = people.paginator.num_pages
 
     try:
         books = book_paginator.get_page(int(page))
@@ -133,30 +124,16 @@ def searchView(request):
     page_sector = (page - 1) // 5
     page_sector = page_sector * 5
 
-    if people:
-        print(people)
-        return render(
-            request,
-            "pages/root/search.html",
-            context={
-                "categories": categories,
-                "books": books,
-                "movies": movies,
-                "people": people,
-                "page_sector": page_sector,
-                "max_page_obj": max_page_obj,
-            },
-        )
-    else:
-        return render(
-            request,
-            "pages/root/search.html",
-            context={
-                "categories": categories,
-                "books": books,
-                "movies": movies,
-                "page_sector": page_sector,
-                "max_page_obj": max_page_obj,
-                "searchgin_term": searchgin_term,
-            },
-        )
+    return render(
+        request,
+        "pages/root/search.html",
+        context={
+            "categories": categories,
+            "books": books,
+            "movies": movies,
+            "people": people,
+            "page_sector": page_sector,
+            "max_page_obj": max_page_obj,
+            "searchgin_term": searchgin_term,
+        },
+    )
