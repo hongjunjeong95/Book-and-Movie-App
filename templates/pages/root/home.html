@@ -7,7 +7,7 @@
     <div class="w-10/12 h-full">
       {% include 'partials/category_sector.html' with categories=categories %}
       <section class="home_section mt-10 p-8 rounded-lg">
-        <h4 class="text-2xl font-bold mb-4">Latest Books</h4>
+        <h4 class="text-2xl font-bold mb-8">Latest Books</h4>
         <div class="section_grid">
           {% for book in books %}
             {% include 'mixins/book.html' with book=book %}
@@ -19,7 +19,7 @@
       </section>
 
       <section class="home_section mt-10 p-8 rounded-lg">
-        <h4 class="text-2xl font-bold mb-4">Latest Movies</h4>
+        <h4 class="text-2xl font-bold mb-8">Latest Movies</h4>
         <div class="section_grid">
           {% for movie in movies %}
             {% include 'mixins/movie.html' with movie=movie %}
@@ -31,7 +31,7 @@
       </section>
 
       <section class="home_section mt-10 p-8 rounded-lg">
-        <h4 class="text-2xl font-bold mb-4">Latest People</h4>
+        <h4 class="text-2xl font-bold mb-8">Latest People</h4>
         <div class="section_grid">
           {% for person in people %}
             {% include 'mixins/person.html' with person=person %}
