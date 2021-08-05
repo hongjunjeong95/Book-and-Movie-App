@@ -1,3 +1,5 @@
+{% load on_favs %}
+
 <div class="relative group show_up_book opacity-0">
   <a href="{% url 'books:book-detail' book.pk %}">
     <img class="cover_image" src="{{book.cover_image.url|default_if_none:" "}}" alt="Cover Image">
@@ -12,4 +14,14 @@
   <div>
     {{book.year}}
   </div>
+  {% is_book_on_favs book as on_favs_boolean %}
+  {% if on_favs_boolean %}
+    <a href="{% url 'favs:add-favs' book.pk %}?type=book" class="mr-3 absolute top-5 right-2">
+      <i class="fas text-red-500 fa-heart  text-2xl justify-end text-center"></i>
+    </a>
+  {% else %}
+    <a href="{% url 'favs:add-favs' book.pk %}?type=book" class="mr-3 absolute top-5 right-2">
+      <i class="far fa-heart  text-2xl text-white justify-end text-center"></i>
+    </a>
+  {% endif %}
 </div>

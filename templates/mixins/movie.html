@@ -1,3 +1,5 @@
+{% load on_favs %}
+
 <div class="relative group show_up_movie opacity-0">
   <a href="{% url 'movies:movie-detail' movie.pk %}">
     <img class="cover_image" src="{{movie.cover_image.url|default_if_none:" "}}" alt="Cover Image">
@@ -12,4 +14,14 @@
   <div>
     {{movie.year}}
   </div>
+  {% is_movie_on_favs movie as on_favs_boolean %}
+  {% if on_favs_boolean %}
+    <a href="{% url 'favs:add-favs' movie.pk %}?type=movie" class="mr-3 absolute top-5 right-2">
+      <i class="fas text-red-500 fa-heart  text-2xl justify-end text-center"></i>
+    </a>
+  {% else %}
+    <a href="{% url 'favs:add-favs' movie.pk %}?type=movie" class="mr-3 absolute top-5 right-2">
+      <i class="far fa-heart  text-2xl text-white justify-end text-center"></i>
+    </a>
+  {% endif %}
 </div>
