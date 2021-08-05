@@ -13,10 +13,10 @@
             <h4 class="text-2xl font-bold ">Fav List</h4>
           </div>
           <div class="section_grid">
-            {% for book in favlist.books.objects.all %}
+            {% for book in favlist.books.all %}
               {% include 'mixins/book.html' with book=book %}
             {% endfor %}
-            {% for movie in favlist.movies.objects.all %}
+            {% for movie in favlist.movies.all %}
               {% include 'mixins/movie.html' with movie=movie %}
             {% endfor %}
           </div>

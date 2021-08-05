@@ -11,6 +11,8 @@ from movies.models import Movie
 def fav_list(request):
     try:
         favlist = FavList.objects.get(created_by=request.user)
+        books = favlist.books.all()
+        print(books)
     except FavList.DoesNotExist:
         return redirect(reverse("core:home"))
 
@@ -47,20 +49,3 @@ def toggleList(request, pk):
             fav_list.books.add(book)
         fav_list.save()
         return redirect(reverse("core:home"))
-
-
-# def toggleList(request, pk):
-#     user = request.user
-#     if str(user) == "AnonymousUser":
-#         return redirect(reverse("users:login"))
-#     action = request.GET.get("action")
-#     room = room_models.Room.objects.get(pk=pk)
-#     if room is not None and action is not None:
-#         the_list, b = list_models.List.objects.get_or_create(
-#             user=request.user, name="My Favorite Houses"
-#         )
-#         if action == "add":
-#             the_list.rooms.add(room)
-#         elif action == "remove":
-#             the_list.rooms.remove(room)
-#     return redirect(reverse("core:home"))
