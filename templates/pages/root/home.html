@@ -20,7 +20,7 @@
 
       <section class="home_section mt-10 p-8 rounded-lg">
         <h4 class="text-2xl font-bold mb-8">Latest Movies</h4>
-        <div class="section_grid">
+        <div class="section_grid ">
           {% for movie in movies %}
             {% include 'mixins/movie.html' with movie=movie %}
           {% endfor %}

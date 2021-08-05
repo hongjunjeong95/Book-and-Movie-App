@@ -1,5 +1,6 @@
 @tailwind base;
 @tailwind components;
+@import "home.scss";
 
 .home_section {
   @apply mb-20;

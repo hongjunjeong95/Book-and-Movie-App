@@ -1,10 +1,10 @@
-<div class="relative group">
+<div class="relative group show_up_people opacity-0">
   <a href="{% url 'people:person-detail' person.pk %}">
     <img class="cover_image" src="{{person.photo.url}}" alt="">
   </a>
   <div>
     <div class="font-bold">
-      {{person.name|truncatechars:29}}
+      {{person.name|truncatechars:27}}
     </div>
     <div>
       {{person.kind|capfirst}}

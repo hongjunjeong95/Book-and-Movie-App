@@ -1,4 +1,4 @@
-<div class="relative group">
+<div class="relative group show_up_movie opacity-0">
   <a href="{% url 'movies:movie-detail' movie.pk %}">
     <img class="cover_image" src="{{movie.cover_image.url|default_if_none:" "}}" alt="Cover Image">
   </a>
@@ -7,7 +7,7 @@
     / 5.0
   </div>
   <div class="font-bold">
-    {{movie.title|truncatechars:29}}
+    {{movie.title|truncatechars:27}}
   </div>
   <div>
     {{movie.year}}

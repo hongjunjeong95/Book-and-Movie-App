@@ -1,4 +1,4 @@
-<div class="relative group">
+<div class="relative group show_up_book opacity-0">
   <a href="{% url 'books:book-detail' book.pk %}">
     <img class="cover_image" src="{{book.cover_image.url|default_if_none:" "}}" alt="Cover Image">
   </a>
@@ -7,7 +7,7 @@
     / 5.0
   </div>
   <div class="font-bold">
-    {{book.title|truncatechars:29}}
+    {{book.title|truncatechars:27}}
   </div>
   <div>
     {{book.year}}
