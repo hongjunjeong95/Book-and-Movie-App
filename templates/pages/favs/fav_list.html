@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% comment %}  {% endcomment %}
+{% block page_title %}
+  {{request.user.username}}'s Fav List
+{% endblock page_title %}
+
+{% block content %}
+  <div class="mt-40 flex flex-col items-center justify-items-center min-h-screen">
+    <div class="w-10/12">
+      <div class="flex flex-col">
+        <section class="home_section mt-10 p-8 rounded-lg">
+          <div class="flex justify-between items-center mb-8">
+            <h4 class="text-2xl font-bold ">Fav List</h4>
+          </div>
+          <div class="section_grid">
+            {% for book in favlist.books.objects.all %}
+              {% include 'mixins/book.html' with book=book %}
+            {% endfor %}
+            {% for movie in favlist.movies.objects.all %}
+              {% include 'mixins/movie.html' with movie=movie %}
+            {% endfor %}
+          </div>
+        </section>
+        
+        {% include 'mixins/page_number.html' with page_sector=page_sector page_obj=page_obj%}
+      </div>
+    </div>
+  </div>
+{% endblock content%}

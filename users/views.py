@@ -8,6 +8,7 @@ from django.db.utils import IntegrityError
 
 from users.forms import LoginForm, SignUpForm
 from users.models import User
+from favs.models import FavList
 
 
 class SignUpView(FormView):
@@ -23,7 +24,9 @@ class SignUpView(FormView):
             form.save()
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
-            authenticate(self.request, username=email, password=password)
+            user = authenticate(self.request, username=email, password=password)
+            fav = FavList.objects.create(created_by=user)
+            fav.save()
             return super().form_valid(form)
         except IntegrityError:
             return redirect(reverse("users:signup"))

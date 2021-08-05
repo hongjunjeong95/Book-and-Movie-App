@@ -21,7 +21,13 @@ class FavListAdmin(admin.ModelAdmin):
         "movies",
     )
 
-    list_display = ("created_by", "count_books", "count_movies")
+    list_display = (
+        "created_by",
+        "count_books",
+        "count_movies",
+    )
+
+    search_fields = ("created_by__username",)
 
     list_filter = ("created_by",)
 
