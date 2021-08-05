@@ -65,6 +65,26 @@ class UserProfileView(DetailView):
     context_object_name = "user_obj"
     template_name = "pages/users/user_profile.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+
+        page = int(self.request.GET.get("page", 1))
+        page_sector = ((page - 1) // 5) * 5
+
+        try:
+            the_list = FavList.objects.get(created_by=self.request.user)
+        except FavList.DoesNotExist:
+            return redirect(reverse("users:signup"))
+
+        if the_list is None:
+            list_count = 0
+        else:
+            list_count = the_list.books.count() + the_list.movies.count()
+
+        context["page_sector"] = page_sector
+        context["list_count"] = list_count
+        return context
+
 
 class UpdateProfileView(UpdateView):
 
