@@ -57,4 +57,6 @@
       <a class="edit_button" href="{% url 'movies:movie-edit' movie.pk %}">Edit Movie</a>
     </div>
   </div>
+  {% comment %}  {% endcomment %}
+  {% include 'mixins/reviews.html' with reviews=reviews type="movie" id=movie.pk %}
 {% endblock content%}

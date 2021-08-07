@@ -22,13 +22,11 @@ class CreateReviewView(LoggedInOnlyView, CreateView):
             book = Book.objects.get(pk=id)
             review.book = book
             review.save()
-            print(book)
             return redirect(reverse("books:book-detail", kwargs={"pk": id}))
-        elif type == "book":
+        elif type == "movie":
             movie = Movie.objects.get(pk=id)
             review.movie = movie
             review.save()
-            print(movie)
             return redirect(reverse("movies:movie-detail", kwargs={"pk": id}))
 
     def get_form(self, form_class=None):

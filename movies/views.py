@@ -2,6 +2,7 @@ from django.views.generic import ListView, DetailView, FormView, UpdateView
 from django.shortcuts import redirect, reverse
 
 from movies.models import Movie
+from reviews.models import Review
 from movies.forms import CreateMovieForm
 
 
@@ -31,6 +32,13 @@ class MovieDetailView(DetailView):
 
     model = Movie
     template_name = "pages/movies/movie_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        movie = context["movie"]
+        reviews = Review.objects.filter(movie=movie)
+        context["reviews"] = reviews
+        return context
 
 
 class CreateMovieView(FormView):
