@@ -4,9 +4,10 @@ from django.views.generic import CreateView
 from reviews.forms import CreateReviewForm
 from books.models import Book
 from movies.models import Movie
+from users.mixins import LoggedInOnlyView
 
 
-class CreateReviewView(CreateView):
+class CreateReviewView(LoggedInOnlyView, CreateView):
     form_class = CreateReviewForm
     template_name = "pages/reviews/create_review.html"
 
