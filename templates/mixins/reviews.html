@@ -8,13 +8,20 @@
   <div class="grid grid-cols-2 gap-x-20 gap-y-10">
     {% for review in reviews.all %}
       <div class="flex flex-col border rounded-lg py-5 px-4 border-gray-300 w-full h-full">
-        <div class="flex">
-          <span>{{review.created_by}}</span>
-          <span class="mx-2">|</span>
-          <span>{{review.rating}}</span>
-        </div>
-        <div class="my-2 text-xs">
-          {{review.created}}
+        <div class="flex justify-between">
+          <div>
+            <div class="flex">
+              <span>{{review.created_by}}</span>
+              <span class="mx-2">|</span>
+              <span>{{review.rating}}</span>
+            </div>
+            <div class="my-2 text-xs">
+              {{review.created}}
+            </div>
+          </div>
+          <button class="mr-10 self-start delete_button">
+            <a href="{% url 'reviews:delete-review' %}?type={{type}}&reviewId={{review.pk}}">Delete</a>
+          </button>
         </div>
         <br>
         <div class="w-full h-32 break-words overflow-y-scroll">

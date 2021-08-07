@@ -5,4 +5,5 @@ app_name = "reviews"
 
 urlpatterns = [
     path("create/", review_views.CreateReviewView.as_view(), name="create-review"),
+    path("delete/", review_views.deleteReview, name="delete-review"),
 ]

@@ -1,5 +1,8 @@
+from reviews.models import Review
 from django.shortcuts import redirect, reverse
 from django.views.generic import CreateView
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 from reviews.forms import CreateReviewForm
 from books.models import Book
@@ -37,3 +40,22 @@ class CreateReviewView(LoggedInOnlyView, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+@login_required
+def deleteReview(request):
+    reviewId = request.GET.get("reviewId")
+    type = request.GET.get("type")
+    review = Review.objects.get(pk=reviewId)
+
+    if type == "book":
+        contentPk = review.book.pk
+    elif type == "movie":
+        contentPk = review.movie.pk
+
+    if review.created_by.pk != request.user.pk:
+        raise Http404("Page not found")
+
+    review.delete()
+
+    return redirect(reverse(f"{type}s:{type}-detail", kwargs={"pk": contentPk}))
