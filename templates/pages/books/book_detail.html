@@ -38,11 +38,29 @@
     </div>
   </div>
   <div class="mt-20 mb-40 bg-gray-200 px-10 mx-20 py-10 rounded-lg">
-    <div class="flex justify-between">
+    <div class="flex justify-between mb-5">
       <h2 class="font-bold text-xl">Reviews</h2>
       <button class="bg-gray-500 text-white rounded-lg text-base font-bold tracking-wider outline-none border-none px-4 py-2">
         <a class="" href="{% url 'reviews:create-review' %}?type=book&id={{book.pk}}">Write a review</a>
       </button>
+    </div>
+    <div class="grid grid-cols-2 gap-x-20 gap-y-10">
+      {% for review in reviews.all %}
+        <div class="flex flex-col border rounded-lg py-5 px-4 border-gray-300 w-full h-full">
+          <div class="flex">
+            <span>{{review.created_by}}</span>
+            <span class="mx-2">|</span>
+            <span>{{review.rating}}</span>
+          </div>
+          <div class="my-2 text-xs">
+            {{review.created}}
+          </div>
+          <br>
+          <div class="w-full h-32 break-words overflow-y-scroll">
+            {{review.text}}
+          </div>
+        </div>
+      {% endfor %}
     </div>
   </div>
 {% endblock content%}

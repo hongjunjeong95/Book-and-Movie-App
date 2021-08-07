@@ -39,10 +39,3 @@ class CreateReviewView(LoggedInOnlyView, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-
-
-# class CreateRoomView(mixins.LoggedInOnlyView, mixins.HostOnlyView, FormView):
-
-#     """Create Room View Definition"""
-
-#     template_name = "pages/books/create_room.html"

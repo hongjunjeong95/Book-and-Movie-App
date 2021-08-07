@@ -2,6 +2,7 @@ from django.views.generic import ListView, DetailView, FormView, UpdateView
 from django.shortcuts import redirect, reverse
 
 from books.models import Book
+from reviews.models import Review
 from books.forms import CreateBookForm
 
 
@@ -31,6 +32,13 @@ class BookDetailView(DetailView):
 
     model = Book
     template_name = "pages/books/book_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        book = context["book"]
+        reviews = Review.objects.filter(book=book)
+        context["reviews"] = reviews
+        return context
 
 
 class CreateBookmView(FormView):
