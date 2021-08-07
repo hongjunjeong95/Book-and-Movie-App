@@ -28,7 +28,7 @@ PROJECT_APPS = [
     "core.apps.CoreConfig",
 ]
 
-THIRD_PARTY_APPS = ["django_seed"]
+THIRD_PARTY_APPS = ["django_seed", "dotenv"]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
