@@ -5,9 +5,9 @@
 {% endblock page_title %}
 
 {% block content %}
-  <div class="w-full mt-20 max-h-full min-h-screen" style="background: rgba(20,20,20,1);">
+  <div class="w-full px-20 mt-20 max-h-full min-h-screen" style="background: rgba(20,20,20,1);">
     <div class="absolute left-1/4 w-1/2 bg-cover bg-no-repeat bg-center h-full opacity-30" style="background-image:url({{book.cover_image.url}})"></div>
-    <div class="flex px-20 pt-20 justify-between">
+    <div class="flex  pt-20 justify-between">
       <div class="flex 3/4">
         <img class="mr-4" src="{{book.cover_image.url}}" alt="Book Cover Image">
         <div class="z-10">
@@ -35,6 +35,14 @@
         </div>
       </div>
       <a class="edit_button" href="{% url 'books:book-edit' book.pk %}">Edit Book</a>
+    </div>
+  </div>
+  <div class="mt-20 mb-40 bg-gray-200 px-10 mx-20 py-10 rounded-lg">
+    <div class="flex justify-between">
+      <h2 class="font-bold text-xl">Reviews</h2>
+      <button class="bg-gray-500 text-white rounded-lg text-base font-bold tracking-wider outline-none border-none px-4 py-2">
+        <a class="" href="{% url 'reviews:create-review' %}?type=book&id={{book.pk}}">Write a review</a>
+      </button>
     </div>
   </div>
 {% endblock content%}

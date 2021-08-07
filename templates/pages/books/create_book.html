@@ -5,48 +5,50 @@
 {% endblock page_title %}
 
 {% block content %}
-  <div class="background">
-    <div class="wrap">
-      <h1 class="text-3xl font-bold pb-6 pt-3 text-center">Create Book</h1>
-      <form method="post" class="form" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form_input rounded-tr-lg rounded-tl-lg">
-          <input type="text" name="title" placeholder="Title" required="required">
-        </div>
+  <div class="py-20">
+    <div class="background">
+      <div class="wrap">
+        <h1 class="text-3xl font-bold pb-6 pt-3 text-center">Create Book</h1>
+        <form method="post" class="form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form_input rounded-tr-lg rounded-tl-lg">
+            <input type="text" name="title" placeholder="Title" required="required">
+          </div>
 
-        <div class="number_input">
-          <input type="number" name="year" class="w-full" min="0" placeholder="Year" required="required">
-        </div>
+          <div class="number_input">
+            <input type="number" name="year" class="w-full" min="0" placeholder="Year" required="required">
+          </div>
 
-        <div class="number_input">
-          <input type="number" name="rating" class="w-full" min="0" max="5" placeholder="Rating" required="required">
-        </div>
+          <div class="number_input">
+            <input type="number" name="rating" class="w-full" min="0" max="5" placeholder="Rating" required="required">
+          </div>
 
-        <div class="border p-3 border-gray-400 flex justify-between">
-          <input type="text" name="caption" class="p-1 w-full" placeholder="Caption">
-          <input type="file" name="cover_image" class="p-1 w-full">
-        </div>
+          <div class="border p-3 border-gray-400 flex justify-between">
+            <input type="text" name="caption" class="p-1 w-full" placeholder="Caption">
+            <input type="file" name="cover_image" class="p-1 w-full">
+          </div>
 
-        <div class="select">
-          <label for="category">Category</label>
-          <select name="category" id="category" required="required">
-            {% for aCategory in form.category %}
-              {{aCategory}}
-            {% endfor %}
-          </select>
-        </div>
+          <div class="select">
+            <label for="category">Category</label>
+            <select name="category" id="category" required="required">
+              {% for aCategory in form.category %}
+                {{aCategory}}
+              {% endfor %}
+            </select>
+          </div>
 
-        <div class="select">
-          <label for="writer">Writer</label>
-          <select name="writer" id="writer" required="required">
-            {% for aWriter in form.writer %}
-              {{aWriter}}
-            {% endfor %}
-          </select>
-        </div>
-        <button class="form_button">Create</button>
-      </form>
-      <a href="{% url 'books:book-list' %}" class="block text-center w-full mt-3 px-1 py-2 bg-gray-500 text-white rounded-lg text-base font-bold tracking-wider outline-none border-none;">Back</a>
+          <div class="select rounded-br-lg rounded-bl-lg">
+            <label for="writer">Writer</label>
+            <select name="writer" id="writer" required="required">
+              {% for aWriter in form.writer %}
+                {{aWriter}}
+              {% endfor %}
+            </select>
+          </div>
+          <button class="form_button">Create</button>
+        </form>
+        <a href="{% url 'books:book-list' %}" class="block text-center w-full mt-3 px-1 py-2 bg-gray-500 text-white rounded-lg text-base font-bold tracking-wider outline-none border-none;">Back</a>
+      </div>
     </div>
   </div>
 {% endblock content %}

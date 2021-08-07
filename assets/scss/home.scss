@@ -3,3 +3,17 @@
 .show_up_people {
   transform: translateY(400px);
 }
+
+.home_section {
+  @apply mb-20;
+  box-shadow: 2px 8px 35px -16px rgba(30, 30, 30, 0.9);
+  .section_grid {
+    @apply grid grid-cols-5 gap-3;
+    .cover_image {
+      @apply w-full h-5/6 hover:opacity-30 transition-opacity ease-linear duration-100;
+    }
+  }
+  .listLink {
+    @apply text-lg font-bold text-blue-500;
+  }
+}

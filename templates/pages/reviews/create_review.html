@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+  Create Review
+{% endblock page_title %}
+
+{% block content %}
+  <div class="py-20">
+    <div class="background">
+      <div class="wrap">
+        <h1 class="text-3xl font-bold pb-6 pt-3 text-center w-96">Create Review</h1>
+        <form method="post" class="form" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form_input rounded-tr-lg rounded-tl-lg">
+            {{form.text}}
+          </div>
+
+          <div class="number_input rounded-br-lg rounded-bl-lg">
+            {{form.rating}}
+          </div>
+
+          <button class="form_button">Create Review</button>
+        </form>
+      {% comment %} <a href="{% url 'reviews:review-list' %}" class="back_button">Back</a> {% endcomment %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}
