@@ -143,3 +143,6 @@ sample.py
 
 # npm
 node_modules
+
+# pem
+pem/
